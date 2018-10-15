@@ -8,17 +8,18 @@ using UnityEngine.SceneManagement;
 
 public class SplineTest : MonoBehaviour {
 	public GameObject lt;
+	public CreatePath mg;
 	public int speed;
 
-	void Awake () {
-		SceneManager.sceneLoaded += this.callback;
+	void Start() {
+		LeanTween.move(lt, mg.ltpath, mg.ltpath.length/speed); // animate
+		this.gameObject.GetComponent<TrailRenderer>().enabled=true;
+
+
+
 	}
 
-	void callback(Scene scene, LoadSceneMode sceneMode){
-		print("got callback");
-		LTBezierPath ltPath = new LTBezierPath( new Vector3[] { new Vector3(0f,.5f,0f),new Vector3(-5f,.5f,8f), new Vector3(-5f,.5f,2f), new Vector3(0f,.5f,10f)} );
-
-		LeanTween.move(lt, ltPath, ltPath.length/speed); // animate
-
+	void OnTriggerEnter(Collider other){
+		other.GetComponent<Renderer>().material.color = Color.blue;
 	}
 }

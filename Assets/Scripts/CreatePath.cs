@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using System;
-using Random=UnityEngine.Random;
+using Random = UnityEngine.Random;
 
 
 public class CreatePath : MonoBehaviour {
@@ -56,12 +56,12 @@ public class CreatePath : MonoBehaviour {
 		Vector3 inter = Vector3.zero;
 		for(int i = 0; i < this.segments;i++){
 			if (last_inter == start){
-				inter = generate_random_bounded(-map_size/2 +1, (-map_size/2 +1) + map_size/((segments)));
+				inter = generate_random_z(-map_size/2 +1, (-map_size/2 +1) + map_size/((segments)));
 			}
 			else{
-				inter = generate_random_bounded(inter.z, inter.z + (map_size/2 - inter.z)/( segments-i));;
+				inter = generate_random_z(inter.z, inter.z + (map_size/2 - inter.z)/( segments-i));;
 			}
-			current_path[i*4 + 1] =  generate_random_bounded(last_inter.z, inter.z);
+			current_path[i*4 + 1] =  generate_random_z(last_inter.z, inter.z);
 			current_path[i*4 + 2] = current_path[i*4+1];
 			current_path[i*4 + 3] = inter;
 			current_path[i*4 + 4] = inter;
@@ -75,7 +75,7 @@ public class CreatePath : MonoBehaviour {
 		}
 
 		end =  new Vector3(Random.Range(-1*map_size/2 , map_size/2), 0,map_size/2);
-		current_path[(segments*4)+1] = generate_random_bounded(inter.z, map_size/2);
+		current_path[(segments*4)+1] = generate_random_z(inter.z, map_size/2);
 		current_path[(segments*4)+1].x = end.x;
 		current_path[(segments*4)+2] = new Vector3(end.x, 0, end.z-1);
 		current_path[(segments*4)+3] = end;
@@ -95,12 +95,17 @@ public class CreatePath : MonoBehaviour {
 		current_path[1] = start;
 
 		Vector3 inter = start;
+		Vector3 last_inter = new Vector3(map_size,0, map_size); //impossible vector
 		for(int i = 0; i < segments; i++){
-			inter = generate_random_bounded(inter.z, inter.z + (map_size/2 - inter.z)/( segments-i));
+
+			inter = generate_random_z(inter.z, inter.z + (map_size/2 - inter.z)/( segments-i));
+
+
 			current_path[i + 2]  = inter;
+			last_inter = inter;
 		}
 
-		end =  new Vector3(Random.Range(-1*map_size/2 , map_size/2), 0,map_size/2);
+		end =  new Vector3(Random.Range(inter.x , map_size/2), 0,map_size/2);
 		Vector3 end_control = new Vector3(end.x,0,end.z-1);
 		current_path[3+(segments)] = end_control;
 		current_path[2+(segments)] = end;
@@ -114,8 +119,13 @@ public class CreatePath : MonoBehaviour {
 		return new Vector3(Random.Range(-1*map_size/2, map_size/2), 0,Random.Range(-1*map_size/2, map_size/2));
 	}
 
-	private Vector3 generate_random_bounded(float z_constraint,float z_constraint2){
-		return new Vector3(Random.Range(-map_size/2, map_size/2), 0,Random.Range(z_constraint+2, z_constraint2));
+
+	private Vector3 generate_random_z(float z_constraint,float z_constraint2){
+		return new Vector3(Random.Range(-map_size/2, map_size/2), 0,Random.Range(z_constraint, z_constraint2));
+	}
+
+	private Vector3 generate_random_x(float x_constraint1,float x_constraint2){
+		return new Vector3(Random.Range(x_constraint1, x_constraint2), 0,Random.Range(-map_size/2, map_size/2));
 	}
 
 

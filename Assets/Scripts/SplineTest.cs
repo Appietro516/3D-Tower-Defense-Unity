@@ -20,6 +20,9 @@ public class SplineTest : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		other.GetComponent<BuildableTile>().buildable = false;
+		BuildableTile t = other.GetComponent<BuildableTile>();
+		if (t != null){
+			t.buildable = false;
+		}
 	}
 }

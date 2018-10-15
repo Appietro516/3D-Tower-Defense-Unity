@@ -75,6 +75,7 @@ public class CreatePath : MonoBehaviour {
 
 		end =  new Vector3(Random.Range(-1*map_size/2 , map_size/2), 0,map_size/2);
 		current_path[(segments*4)+1] = generate_random_bounded(inter.z, map_size/2-1);
+		current_path[(segments*4)+1].x = end.x;
 		current_path[(segments*4)+2] = current_path[(segments*4)+1];
 		current_path[(segments*4)+3] = end;
 

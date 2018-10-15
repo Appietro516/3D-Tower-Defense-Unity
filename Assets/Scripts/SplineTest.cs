@@ -12,7 +12,7 @@ public class SplineTest : MonoBehaviour {
 	public int speed;
 
 	void Start() {
-		LeanTween.move(lt, mg.ltpath, mg.ltpath.length/speed); // animate
+		LeanTween.moveSpline(lt, mg.ltpath, mg.ltpath.distance/speed); // animate
 		this.gameObject.GetComponent<TrailRenderer>().enabled=true;
 
 
@@ -20,6 +20,6 @@ public class SplineTest : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		other.GetComponent<Renderer>().material.color = Color.blue;
+		other.GetComponent<BuildableTile>().buildable = false;
 	}
 }

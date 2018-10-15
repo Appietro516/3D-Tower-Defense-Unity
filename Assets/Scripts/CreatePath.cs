@@ -10,7 +10,7 @@ public class CreatePath : MonoBehaviour {
 	public int map_size;
 
 	public GameObject floor;
-	public LTBezierPath ltpath;
+	public LTSpline ltpath;
 	public int segments;
 
 	private Vector3 start = Vector3.zero;
@@ -29,6 +29,7 @@ public class CreatePath : MonoBehaviour {
 		top_right = new Vector3(map_size/2, 0, map_size/2);
 		bot_left = new Vector3(-map_size/2, 0, -map_size/2);
 		bot_right = new Vector3(-map_size/2, 0, map_size/2);
+
 		for(int i = -1*map_size/2; i < map_size/2 + 1; i++){
 			for (int j = -1*map_size/2; j < map_size/2 + 1; j++){
 				GameObject thisfloor = Instantiate(floor);
@@ -37,7 +38,7 @@ public class CreatePath : MonoBehaviour {
 			}
 		}
 
-		ltpath = generate_bezier();
+		ltpath = generate_spline();
 	}
 
 	// Update is called once per frame
@@ -74,12 +75,37 @@ public class CreatePath : MonoBehaviour {
 		}
 
 		end =  new Vector3(Random.Range(-1*map_size/2 , map_size/2), 0,map_size/2);
-		current_path[(segments*4)+1] = generate_random_bounded(inter.z, map_size/2-1);
+		current_path[(segments*4)+1] = generate_random_bounded(inter.z, map_size/2);
 		current_path[(segments*4)+1].x = end.x;
-		current_path[(segments*4)+2] = current_path[(segments*4)+1];
+		current_path[(segments*4)+2] = new Vector3(end.x, 0, end.z-1);
 		current_path[(segments*4)+3] = end;
 
 		return new LTBezierPath(current_path);
+
+
+	}
+
+	private LTSpline generate_spline(){
+		Vector3[] current_path = new Vector3[4+(segments)];
+		Vector3 start_control = new Vector3(0,0,0);
+
+		current_path[0] = start_control;
+
+		Vector3 start = new Vector3(Random.Range(-1*map_size/2, map_size/2), 0,-1*map_size/2);
+		current_path[1] = start;
+
+		Vector3 inter = start;
+		for(int i = 0; i < segments; i++){
+			inter = generate_random_bounded(inter.z, inter.z + (map_size/2 - inter.z)/( segments-i));
+			current_path[i + 2]  = inter;
+		}
+
+		end =  new Vector3(Random.Range(-1*map_size/2 , map_size/2), 0,map_size/2);
+		Vector3 end_control = new Vector3(end.x,0,end.z-1);
+		current_path[3+(segments)] = end_control;
+		current_path[2+(segments)] = end;
+
+		return new LTSpline(current_path);
 
 
 	}

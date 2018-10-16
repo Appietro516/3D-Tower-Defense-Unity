@@ -31,7 +31,8 @@ public class BuildableTile : MonoBehaviour {
 	void OnMouseDown(){
 		if (buildable){
 			GameObject built_tower = Object.Instantiate(tower);
-			built_tower.transform.position = this.transform.position;
+			built_tower.transform.position = new Vector3(this.transform.position.x, 1f, this.transform.position.z);
+
 
 		}
 	}

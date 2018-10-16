@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (this.isDead()){
+			Destroy(this.gameObject);
+		}
 
 	}
 
@@ -22,5 +25,13 @@ public class Enemy : MonoBehaviour {
 		//core.health -= 1; //this.damage;
 		//}
 
+	}
+
+	void take_damage(int deltaHealth){
+		this.health -= deltaHealth;
+	}
+
+	private bool isDead(){
+		return health <= 0;
 	}
 }

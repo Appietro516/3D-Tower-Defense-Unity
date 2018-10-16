@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour {
 
 	}
 
-	void take_damage(int deltaHealth){
+	public void take_damage(int deltaHealth){
 		this.health -= deltaHealth;
 	}
 

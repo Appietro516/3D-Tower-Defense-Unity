@@ -111,3 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildable: 0
+  tower: {fileID: 1692528955822338, guid: 93a13668b8fe8194c91cf745fded417d, type: 2}

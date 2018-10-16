@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BuildableTile : MonoBehaviour {
 	public bool buildable;
+	public GameObject tower; //tower selector
 
 	private Color init_color;
 
@@ -20,12 +21,18 @@ public class BuildableTile : MonoBehaviour {
 	}
 
 	void OnMouseOver(){
-		print("hi1");
 		gameObject.GetComponent<Renderer>().material.color = Color.green;
 	}
 
 	void OnMouseExit(){
-		print("hi2");
 		gameObject.GetComponent<Renderer>().material.color = init_color;
+	}
+
+	void OnMouseDown(){
+		if (buildable){
+			GameObject built_tower = Object.Instantiate(tower);
+			built_tower.transform.position = this.transform.position;
+
+		}
 	}
 }

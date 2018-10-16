@@ -14,10 +14,18 @@ public class EnemySpawn : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		GameObject current_enemy = null;
 		time += Time.deltaTime;
 		if ((time) >= SpawnTimer){
-			GameObject current_enemy = Object.Instantiate(enemy);
-			LeanTween.moveSpline(current_enemy, mg.ltpath, mg.ltpath.distance/10); // animate
+			current_enemy = Object.Instantiate(enemy);
+			this.time = 0;
+
+		}
+		if (current_enemy != null){
+			Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
+			LeanTween.moveSpline(current_enemy, mg.ltpath, mg.ltpath.distance/enemy_stats.speed);
+			current_enemy = null;
+
 		}
 
 

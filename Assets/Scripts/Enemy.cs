@@ -20,10 +20,11 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		//core = col.GameObject.getComponent("Core");
-		//if (core != null){
-		//core.health -= 1; //this.damage;
-		//}
+		Core core = (Core)col.gameObject.GetComponent("Core");
+		if (core != null){
+			core.health -= damage;
+			Destroy(this.gameObject);
+		}
 
 	}
 

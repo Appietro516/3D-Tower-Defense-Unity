@@ -10,6 +10,9 @@ public class CreatePath : MonoBehaviour {
 	public int map_size;
 
 	public GameObject floor;
+
+	public GameObject core;
+
 	public LTSpline ltpath;
 	public int segments;
 
@@ -39,6 +42,7 @@ public class CreatePath : MonoBehaviour {
 		}
 
 		ltpath = generate_spline();
+		Instantiate(core, new Vector3(end.x, core.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y/2,end.z), Quaternion.identity);
 	}
 
 	// Update is called once per frame

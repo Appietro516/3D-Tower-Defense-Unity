@@ -24,7 +24,7 @@ public class CreatePath : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		top_left = new Vector3(map_size/2, 0, -map_size/2);
 		top_right = new Vector3(map_size/2, 0, map_size/2);
 		bot_left = new Vector3(-map_size/2, 0, -map_size/2);

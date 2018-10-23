@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mg: {fileID: 792415571}
-  enemy: {fileID: 1971406488832048, guid: b7503bd68611c7645bd77778c319d3f4, type: 2}
+  enemy: {fileID: 1057966667738612, guid: 726618377dac11a4f855b09dd6ad242b, type: 2}
 --- !u!65 &278882170
 BoxCollider:
   m_ObjectHideFlags: 0

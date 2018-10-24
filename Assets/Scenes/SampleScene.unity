@@ -463,6 +463,18 @@ Prefab:
       propertyPath: mg
       value: 
       objectReference: {fileID: 792415571}
+    - target: {fileID: 4867942054801578, guid: 6dcf479a077aac44c9d618a7c7dee226, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4867942054801578, guid: 6dcf479a077aac44c9d618a7c7dee226, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4867942054801578, guid: 6dcf479a077aac44c9d618a7c7dee226, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dcf479a077aac44c9d618a7c7dee226, type: 2}
   m_IsPrefabAsset: 0
@@ -493,8 +505,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9f71cbf996d5a48b92faffc7f79210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 10
-  health: 10
 --- !u!4 &2002884892
 Transform:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class SplineTest : MonoBehaviour {
 	public int speed;
 
 	void Start() {
-		LeanTween.moveSpline(lt, mg.ltpath, mg.ltpath.distance/speed); // animate
+		LeanTween.moveSpline(lt, mg.ltpath, 1);
 		this.gameObject.GetComponent<TrailRenderer>().enabled=true;
 
 

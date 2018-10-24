@@ -229,7 +229,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 278882168}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -396,6 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map_size: 10
   floor: {fileID: 1177062018912312, guid: bdd5dc578d0d9f1419d663940e463146, type: 2}
+  core: {fileID: 1223454943918384, guid: 6a74ee537d12b78488d82643245ab7bf, type: 2}
   ltpath:
     distance: 0
     constantSpeed: 0
@@ -404,6 +405,7 @@ MonoBehaviour:
     orientToPath: 0
     orientToPath2d: 0
   segments: 5
+  path_y_offset: 0.5
 --- !u!4 &792415572
 Transform:
   m_ObjectHideFlags: 0

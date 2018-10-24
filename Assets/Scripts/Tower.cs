@@ -8,6 +8,8 @@ public class Tower : MonoBehaviour {
 	public int damage;
 	public float reload_time;
 
+	public int price;
+
 	private bool loaded = true;
 	private float since_fired = 0;
 

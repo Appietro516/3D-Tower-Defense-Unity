@@ -26,10 +26,13 @@ public class CreatePath : MonoBehaviour {
 	private Vector3 bot_left;
 	private Vector3 bot_right;
 
+	public static ArrayList enemies;
+
 
 
 	// Use this for initialization
 	void Awake () {
+		enemies = new ArrayList();
 		top_left = new Vector3(map_size/2, 0, -map_size/2);
 		top_right = new Vector3(map_size/2, 0, map_size/2);
 		bot_left = new Vector3(-map_size/2, 0, -map_size/2);

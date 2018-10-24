@@ -17,6 +17,14 @@ public class Tower : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		foreach (GameObject enemy in CreatePath.enemies){
+			if(inRange(enemy)){
+				print("FIRE");
+				Enemy enemy_stats = enemy.GetComponent<Enemy>();
+				enemy_stats.health--;
+				return;
+			}
+		}
 
 	}
 

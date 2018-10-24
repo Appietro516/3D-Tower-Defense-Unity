@@ -24,6 +24,8 @@ public class EnemySpawn : MonoBehaviour {
 		if (current_enemy != null){
 			Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
 			LeanTween.moveSpline(current_enemy, mg.ltpath, mg.ltpath.distance/enemy_stats.speed);
+
+			CreatePath.enemies.Add(current_enemy);
 			current_enemy = null;
 
 		}

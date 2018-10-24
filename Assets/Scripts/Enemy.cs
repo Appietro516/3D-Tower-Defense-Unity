@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		if (this.isDead()){
 			Destroy(this.gameObject);
+			CreatePath.enemies.Remove(this.gameObject);
 		}
 
 	}
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour {
 		if (core != null){
 			core.health -= damage;
 			Destroy(this.gameObject);
+			CreatePath.enemies.Remove(this.gameObject);
 		}
 
 	}

@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour {
 	public int health;
 	public int speed;
 	public int damage;
+	public int value;
 	// Use this for initialization
 	void Start () {
 
@@ -14,8 +15,10 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (this.isDead()){
-			Destroy(this.gameObject);
-			CreatePath.enemies.Remove(this.gameObject);
+			PlayerBehaviors.money += this.value;
+			PlayerBehaviors.score += 1;
+			print(PlayerBehaviors.money);
+			this.teardown();
 		}
 
 	}
@@ -24,9 +27,7 @@ public class Enemy : MonoBehaviour {
 		Core core = (Core)col.gameObject.GetComponent("Core");
 		if (core != null){
 			core.health -= damage;
-			Destroy(this.gameObject);
-			CreatePath.enemies.Remove(this.gameObject);
-		}
+			this.teardown();		}
 
 	}
 
@@ -36,5 +37,10 @@ public class Enemy : MonoBehaviour {
 
 	private bool isDead(){
 		return health <= 0;
+	}
+
+	private void teardown(){
+		Destroy(this.gameObject);
+		CreatePath.enemies.Remove(this.gameObject);
 	}
 }

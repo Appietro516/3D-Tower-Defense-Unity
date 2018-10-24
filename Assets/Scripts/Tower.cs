@@ -22,7 +22,6 @@ public class Tower : MonoBehaviour {
 		if(loaded){
 			foreach (GameObject enemy in CreatePath.enemies){
 				if(inRange(enemy)){
-					print("FIRE");
 					loaded = false;
 					print(enemy);
 					Enemy enemy_stats = enemy.GetComponent<Enemy>();
@@ -48,7 +47,6 @@ public class Tower : MonoBehaviour {
 		Vector3 thisPos = this.gameObject.transform.position;
 		Vector3 otherPos = other.transform.position;
 
-		print(Vector3.Distance(thisPos, otherPos));
 		return (Vector3.Distance(thisPos, otherPos) <= range);
 
 

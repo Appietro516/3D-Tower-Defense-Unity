@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerBehaviors : MonoBehaviour {
 
-	public int money;
-	public int health;
+	[SerializeField] public static int money;
+	[SerializeField] public static int health;
+	[SerializeField] public static int score;
 
 	// Use this for initialization
 	void Start () {

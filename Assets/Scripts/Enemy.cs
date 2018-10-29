@@ -26,8 +26,9 @@ public class Enemy : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		Core core = (Core)col.gameObject.GetComponent("Core");
 		if (core != null){
-			core.health -= damage;
-			this.teardown();		}
+			core.changeHealth(damage*-1);
+			this.teardown();
+		}
 
 	}
 

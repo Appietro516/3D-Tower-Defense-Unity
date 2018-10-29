@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Core : MonoBehaviour {
-	//TODO create a superclass for a healthful object.
-	public int health;
 	// Use this for initialization
 	void Start () {
 
@@ -18,9 +16,13 @@ public class Core : MonoBehaviour {
 
 	}
 
+	public void changeHealth(int delta){
+		PlayerBehaviors.health += delta;
+	}
+
 
 	private bool isDead(){
-		return health <= 0;
+		return PlayerBehaviors.health <= 0;
 	}
 
 

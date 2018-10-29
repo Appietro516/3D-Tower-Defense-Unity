@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBehaviors : MonoBehaviour {
 
 	[SerializeField] public static int money = 5;
-	[SerializeField] public static int health;
+	[SerializeField] public static int health = 100;
 	[SerializeField] public static int score;
 
 	public static bool paused = false;

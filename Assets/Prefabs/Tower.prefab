@@ -113,7 +113,7 @@ MonoBehaviour:
   range: 5
   damage: 1
   reload_time: 0.5
-  price: 5
+  price: 50
 --- !u!114 &114138551732676786
 MonoBehaviour:
   m_ObjectHideFlags: 1

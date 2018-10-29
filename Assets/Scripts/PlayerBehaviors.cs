@@ -6,7 +6,7 @@ public class PlayerBehaviors : MonoBehaviour {
 
 	[SerializeField] public static int money = 100;
 	[SerializeField] public static int health = 100;
-	[SerializeField] public static int wave = 1;
+	[SerializeField] public static int wave = 0;
 
 	public static bool paused = false;
 

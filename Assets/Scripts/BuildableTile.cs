@@ -14,14 +14,14 @@ public class BuildableTile : MonoBehaviour {
 	}
 
 	void Update(){
-		if (!buildable){
-			this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
-			this.gameObject.GetComponent<MeshCollider>().enabled = false;
-		}
+		// if (!buildable){
+		// 	this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+		// 	this.gameObject.GetComponent<MeshCollider>().enabled = false;
+		// }
 	}
 
 	void OnMouseOver(){
-		if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price && !PlayerBehaviors.paused){
+		if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price && !PlayerBehaviors.paused && buildable){
 			gameObject.GetComponent<Renderer>().material.color = Color.green;
 		}
 		else{

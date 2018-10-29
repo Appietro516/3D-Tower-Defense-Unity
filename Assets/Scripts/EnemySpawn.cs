@@ -15,7 +15,7 @@ public class EnemySpawn : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		GameObject current_enemy = null;
-		time += Time.deltaTime;
+		time += Time.deltaTime * Time.timeScale;
 		if ((time) >= SpawnTimer){
 			current_enemy = Object.Instantiate(enemy);
 			this.time = 0;
@@ -23,7 +23,7 @@ public class EnemySpawn : MonoBehaviour {
 		}
 		if (current_enemy != null){
 			Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
-			LeanTween.moveSpline(current_enemy, mg.ltpath, mg.ltpath.distance/enemy_stats.speed);
+			LeanTween.moveSpline(current_enemy, mg.ltpath, mg.ltpath.distance * Time.timeScale/enemy_stats.speed);
 
 			CreatePath.enemies.Add(current_enemy);
 			current_enemy = null;

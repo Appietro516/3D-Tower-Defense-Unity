@@ -21,7 +21,7 @@ public class BuildableTile : MonoBehaviour {
 	}
 
 	void OnMouseOver(){
-		if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price){
+		if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price && !PlayerBehaviors.paused){
 			gameObject.GetComponent<Renderer>().material.color = Color.green;
 		}
 		else{
@@ -34,15 +34,17 @@ public class BuildableTile : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		if (buildable){
-			if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price){
-				GameObject built_tower = Object.Instantiate(tower);
-				built_tower.transform.position = new Vector3(this.transform.position.x, 1f, this.transform.position.z);
+		if (!PlayerBehaviors.paused){
+			if (buildable){
+				if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price){
+					GameObject built_tower = Object.Instantiate(tower);
+					built_tower.transform.position = new Vector3(this.transform.position.x, 1f, this.transform.position.z);
 
-				PlayerBehaviors.money -= tower.GetComponent<Tower>().price;
+					PlayerBehaviors.money -= tower.GetComponent<Tower>().price;
+				}
+
+
 			}
-
-
 		}
 	}
 }

@@ -16,8 +16,6 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		if (this.isDead()){
 			PlayerBehaviors.money += this.value;
-			PlayerBehaviors.score += 1;
-			print(PlayerBehaviors.money);
 			this.teardown();
 		}
 
@@ -41,7 +39,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	private void teardown(){
-		Destroy(this.gameObject);
 		CreatePath.enemies.Remove(this.gameObject);
+		Destroy(this.gameObject);
 	}
 }

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerBehaviors : MonoBehaviour {
 
-	[SerializeField] public static int money = 5;
+	[SerializeField] public static int money = 100;
 	[SerializeField] public static int health = 100;
-	[SerializeField] public static int score;
+	[SerializeField] public static int wave = 1;
 
 	public static bool paused = false;
 
 	public GameObject pausetext;
+	public GameObject controls;
+	public GameObject reminder;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +25,12 @@ public class PlayerBehaviors : MonoBehaviour {
 		   Time.timeScale = -1*Time.timeScale + 1;
 		   paused = !paused;
 		   pausetext.SetActive(!pausetext.activeSelf);
+
+	   	}
+
+		if (Input.GetButtonDown("Controls")){
+		 	controls.SetActive(!controls.activeSelf);
+			reminder.SetActive(!reminder.activeSelf);
 
 	   	}
 

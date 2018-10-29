@@ -13,7 +13,9 @@ public class UI : MonoBehaviour {
 	}
 
 	void Update () {
-		this.UItext.SetText("Money: " + PlayerBehaviors.money + "\n" + "Health: " + PlayerBehaviors.health + "\n");
+		this.UItext.SetText("Money: " + PlayerBehaviors.money + "\n" + "Health: " + PlayerBehaviors.health +"\n" + "Wave: " + PlayerBehaviors.wave + "\n");
+
+
    	}
 
 

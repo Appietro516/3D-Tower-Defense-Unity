@@ -25,15 +25,18 @@ public class Tower : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(loaded){
-			foreach (GameObject enemy in CreatePath.enemies){
-				if(inRange(enemy)){
-					loaded = false;
-					target = enemy;
-					Enemy enemy_stats = enemy.GetComponent<Enemy>();
-					enemy_stats.health-= damage;
-					since_fired = 0;
-					return;
-				}
+			GameObject enemy = getTarget();
+			print(enemy);
+			if(enemy != null && inRange(enemy)){
+				loaded = false;
+				target = enemy;
+				Enemy enemy_stats = enemy.GetComponent<Enemy>();
+				enemy_stats.health-= damage;
+				since_fired = 0;
+				return;
+			}
+			else{
+				target = null;
 			}
 		}
 
@@ -43,6 +46,7 @@ public class Tower : MonoBehaviour {
 				loaded = true;
 			}
 		}
+
 		Vector3[] points = new Vector3[2];
 
 		if (target){
@@ -65,6 +69,26 @@ public class Tower : MonoBehaviour {
 		return (Vector3.Distance(thisPos, otherPos) <= range);
 
 
+	}
+
+	private GameObject getTarget(){
+		GameObject target = null;
+		foreach(GameObject enemy in CreatePath.enemies){
+			if (inRange(enemy)){
+				if (target == null){
+					target = enemy;
+					continue;
+				}
+
+				Enemy enemy_stats = enemy.GetComponent<Enemy>();
+				Enemy target_stats = target.GetComponent<Enemy>();
+
+				if(enemy_stats.health < target_stats.health){
+					target = enemy;
+				}
+			}
+		}
+		return target;
 	}
 
 }

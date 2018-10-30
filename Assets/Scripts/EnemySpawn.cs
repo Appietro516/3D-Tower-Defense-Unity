@@ -53,13 +53,13 @@ public class EnemySpawn : MonoBehaviour {
 
 				//generate enemy
 				Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
-				int temp_points = Random.Range(3, PlayerBehaviors.wave*9);
-				enemy_stats.value = temp_points/3;
+				int temp_points = Random.Range(3, 6 + (PlayerBehaviors.wave*2));
+				enemy_stats.value = (int)Mathf.Ceil(temp_points/4.0f);
 
 				points -= temp_points;
 
 
-				enemy_stats.health = Random.Range(1,temp_points);
+				enemy_stats.health = Random.Range(2,temp_points);
 				temp_points -= enemy_stats.health;
 
 				enemy_stats.speed = Random.Range(1,temp_points);
@@ -73,8 +73,10 @@ public class EnemySpawn : MonoBehaviour {
 				LeanTween.moveSpline(current_enemy, mg.ltpath, mg.ltpath.distance * Time.timeScale/enemy_stats.speed);
 
 				//add enemy to global enemy list
-				CreatePath.enemies.Add(current_enemy);
-				current_enemy = null;
+				if (current_enemy != null){
+					CreatePath.enemies.Add(current_enemy);
+					current_enemy = null;
+				}
 
 			}
 

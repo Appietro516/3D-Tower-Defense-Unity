@@ -151,7 +151,10 @@ MonoBehaviour:
   range: 3
   damage: 1
   reload_time: 0.5
+  upgradeCost: 15
   price: 50
+  low_health_targets: 1
+  speed_targets: 0
 --- !u!114 &114138551732676786
 MonoBehaviour:
   m_ObjectHideFlags: 1

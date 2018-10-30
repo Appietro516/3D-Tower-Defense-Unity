@@ -300,7 +300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -65, y: -20}
+  m_AnchoredPosition: {x: -80, y: -20}
   m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &202287980
@@ -322,9 +322,33 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "W - camera forward\nA - camera backward\nS - camera left\nD - camera right\nP
-    - toggle pause\nR - camera reset\nQ - toggle control dialogue\nE - exit the game\n\nclick
-    a tile to build a tower. Towers cost 50 money. \n\n"
+  m_text: 'W - camera forward
+
+    A - camera backward
+
+    S - camera left
+
+    D - camera right
+
+    P - toggle pause
+
+    R - camera reset
+
+    Q - toggle control dialogue
+
+    E - exit the game
+
+    T- force target low hp enemies
+
+    B- force target high hp enemies
+
+    F- force target on fast enemies
+
+
+    Prevent enemies from reaching the core by building towers. click a tile to build
+    a tower. Towers cost 50 money. Tower range can be upgraded for 25 money.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1455,7 +1479,7 @@ RectTransform:
   - {fileID: 695401626}
   - {fileID: 1946913762}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2012,6 +2036,7 @@ MonoBehaviour:
   pausetext: {fileID: 621316412}
   controls: {fileID: 1772598191}
   reminder: {fileID: 2064281101}
+  exits: {fileID: 1946913761}
 --- !u!4 &2002884892
 Transform:
   m_ObjectHideFlags: 0
@@ -2023,7 +2048,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2064281101
 GameObject:

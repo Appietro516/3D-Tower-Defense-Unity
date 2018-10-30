@@ -66,7 +66,7 @@ public class EnemySpawn : MonoBehaviour {
 				enemy_stats.speed = Random.Range(1,temp_points);
 				temp_points -= enemy_stats.speed;
 
-				enemy_stats.damage = temp_points;
+				enemy_stats.damage = Mathf.Max(1,temp_points);
 
 
 

@@ -6,6 +6,7 @@ public class Core : MonoBehaviour {
 	void Update () {
 		if(this.isDead()){
 			PlayerBehaviors.gamover = true;
+			Destroy(this.gameObject);
 		}
 
 	}

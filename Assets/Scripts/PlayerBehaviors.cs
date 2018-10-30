@@ -34,5 +34,9 @@ public class PlayerBehaviors : MonoBehaviour {
 
 	   	}
 
+		if (Input.GetButtonDown("Exit")){
+			 Application.Quit();
+		}
+
 	}
 }

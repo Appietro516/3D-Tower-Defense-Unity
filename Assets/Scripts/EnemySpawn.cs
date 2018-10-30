@@ -46,6 +46,7 @@ public class EnemySpawn : MonoBehaviour {
 				if (points >= 0){
 					current_enemy = Object.Instantiate(enemy);
 					this.time = 0;
+					SpawnTimer = Random.Range(0.2f, 1.0f);
 				}
 
 			}

@@ -150,6 +150,7 @@ MonoBehaviour:
   speed: 3
   damage: 3
   value: 1
+  ragdoll: {fileID: 1415036264154586, guid: 914576bc18efa8648a5aab66d4aea4c4, type: 2}
 --- !u!114 &114359800223602842
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,15 +7,14 @@ public class Enemy : MonoBehaviour {
 	public int speed;
 	public int damage;
 	public int value;
-	// Use this for initialization
-	void Start () {
+	public GameObject ragdoll;
 
-	}
 
 	// Update is called once per frame
 	void Update () {
 		if (this.isDead()){
 			PlayerBehaviors.money += this.value;
+			GameObject current_ragdoll = Instantiate(ragdoll, this.gameObject.transform.position, Quaternion.identity);
 			this.teardown();
 		}
 

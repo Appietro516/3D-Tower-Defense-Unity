@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildableTile : MonoBehaviour {
+public class BuildableTile : MonoBehaviour{
 	public bool buildable;
 	public GameObject tower; //tower selector
 
@@ -13,12 +13,7 @@ public class BuildableTile : MonoBehaviour {
 		buildable = true;
 	}
 
-	void Update(){
-		// if (!buildable){
-		// 	this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
-		// 	this.gameObject.GetComponent<MeshCollider>().enabled = false;
-		// }
-	}
+
 
 	void OnMouseOver(){
 		if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price && !PlayerBehaviors.paused && buildable){

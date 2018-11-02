@@ -7,9 +7,9 @@ using Random = UnityEngine.Random;
 
 
 public class CreatePath : MonoBehaviour {
-	public int map_size;
+	private TileMap tileMap;
+	private int map_size;
 
-	public GameObject floor;
 
 	public GameObject core;
 
@@ -21,10 +21,6 @@ public class CreatePath : MonoBehaviour {
 	private Vector3 start = Vector3.zero;
 	private Vector3 end = Vector3.zero;
 
-	private Vector3 top_left;
-	private Vector3 top_right;
-	private Vector3 bot_left;
-	private Vector3 bot_right;
 
 	public static ArrayList enemies;
 
@@ -32,68 +28,19 @@ public class CreatePath : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		enemies = new ArrayList();
-		top_left = new Vector3(map_size/2, 0, -map_size/2);
-		top_right = new Vector3(map_size/2, 0, map_size/2);
-		bot_left = new Vector3(-map_size/2, 0, -map_size/2);
-		bot_right = new Vector3(-map_size/2, 0, map_size/2);
+		tileMap = this.gameObject.GetComponent<TileMap>();
+		this.gameObject.transform.position = new Vector3(-tileMap.size_x/2, 0,-tileMap.size_z/2);
 
-		for(int i = -1*map_size/2; i < map_size/2 + 1; i++){
-			for (int j = -1*map_size/2; j < map_size/2 + 1; j++){
-				GameObject thisfloor = Instantiate(floor);
-				thisfloor.transform.parent = this.gameObject.transform;
-				thisfloor.transform.localPosition = new Vector3(i, 0, j);
-			}
-		}
+		map_size = tileMap.size_x;
+		enemies = new ArrayList();
+
 
 		ltpath = generate_spline();
-		Instantiate(core, new Vector3(end.x, end.y, end.z), Quaternion.identity);
+		Instantiate(core, tileMap.CenterPosition(new Vector3(end.x, end.y, end.z)), Quaternion.identity);
 		//+ core.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y/2
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-	}
-
-	private LTBezierPath generate_bezier(){
-		start = new Vector3(Random.Range(-1*map_size/2, map_size/2), path_y_offset,-1*map_size/2);
-
-		Vector3[] current_path = new Vector3[4+(segments*4)];
-		current_path[0] = start;
-
-		Vector3 last_inter = start;
-		Vector3 inter = Vector3.zero;
-		for(int i = 0; i < this.segments;i++){
-			if (last_inter == start){
-				inter = generate_random_z(-map_size/2 +1, (-map_size/2 +1) + map_size/((segments)));
-			}
-			else{
-				inter = generate_random_z(inter.z, inter.z + (map_size/2 - inter.z)/( segments-i));;
-			}
-			current_path[i*4 + 1] =  generate_random_z(last_inter.z, inter.z);
-			current_path[i*4 + 2] = current_path[i*4+1];
-			current_path[i*4 + 3] = inter;
-			current_path[i*4 + 4] = inter;
-			last_inter = inter;
-
-		}
-		if (segments == 0){
-			current_path[1] = generate_random();
-			current_path[2] = generate_random();
-
-		}
-
-		end =  new Vector3(Random.Range(-1*map_size/2 , map_size/2), path_y_offset,map_size/2);
-		current_path[(segments*4)+1] = generate_random_z(inter.z, map_size/2);
-		current_path[(segments*4)+1].x = end.x;
-		current_path[(segments*4)+2] = new Vector3(end.x, path_y_offset, end.z-1);
-		current_path[(segments*4)+3] = end;
-
-		return new LTBezierPath(current_path);
-
-
-	}
 
 	private LTSpline generate_spline(){
 		Vector3[] current_path = new Vector3[4+(segments)];
@@ -103,6 +50,7 @@ public class CreatePath : MonoBehaviour {
 
 		Vector3 start = new Vector3(Random.Range(-1*map_size/2, map_size/2), path_y_offset,-1*map_size/2);
 		current_path[1] = start;
+		print(start);
 
 		Vector3 inter = start;
 		Vector3 last_inter = new Vector3(map_size, path_y_offset, map_size); //impossible vector
@@ -115,10 +63,11 @@ public class CreatePath : MonoBehaviour {
 			last_inter = inter;
 		}
 
-		end =  new Vector3(Random.Range(inter.x, map_size/2), path_y_offset,map_size/2);
+		end =  new Vector3(map_size/2, path_y_offset,map_size/2);
 		Vector3 end_control = new Vector3(end.x, path_y_offset,end.z-1);
 		current_path[3+(segments)] = end_control;
 		current_path[2+(segments)] = end;
+		print(end);
 
 		return new LTSpline(current_path);
 

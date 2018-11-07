@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		if (this.isDead()){
 			PlayerBehaviors.money += this.value;
+			PlayerBehaviors.enemiesKilled += 1;
 			GameObject current_ragdoll = Instantiate(ragdoll, this.gameObject.transform.position, Quaternion.identity);
 			this.teardown();
 		}

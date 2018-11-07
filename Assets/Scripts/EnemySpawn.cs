@@ -34,7 +34,7 @@ public class EnemySpawn : MonoBehaviour {
 				waveOn = true;
 				waveNotifier.SetActive(false);
 				PlayerBehaviors.wave += 1;
-				points = start_points * PlayerBehaviors.wave * 2;
+				points = start_points * PlayerBehaviors.wave * 3;
 				wavetime = 0;
 			}
 		}
@@ -54,7 +54,7 @@ public class EnemySpawn : MonoBehaviour {
 
 				//generate enemy
 				Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
-				int temp_points = Random.Range(1 + (PlayerBehaviors.wave), 6 + (PlayerBehaviors.wave));
+				int temp_points = Random.Range(1 + (PlayerBehaviors.wave), 6 + (PlayerBehaviors.wave*2));
 				enemy_stats.value = 5;
 
 				points -= temp_points;
@@ -83,6 +83,12 @@ public class EnemySpawn : MonoBehaviour {
 
 			if(points <= 0 && CreatePath.enemies.Count == 0){
 				waveOn = false;
+				foreach(GameObject tower in CreatePath.towers){
+					Tower tower_stats = tower.GetComponent<Tower>();
+					if (tower_stats.bank == true){
+						PlayerBehaviors.money += 25;
+					}
+				}
 			}
 		}
 

@@ -12,6 +12,7 @@ public class CreatePath : MonoBehaviour {
 
 
 	public GameObject core;
+	public GameObject core_explosion;
 
 	public LTSpline ltpath;
 	public int segments;
@@ -23,6 +24,7 @@ public class CreatePath : MonoBehaviour {
 
 
 	public static ArrayList enemies;
+	public static ArrayList towers;
 
 
 
@@ -33,9 +35,12 @@ public class CreatePath : MonoBehaviour {
 
 		map_size = tileMap.size_x;
 		enemies = new ArrayList();
+		towers = new ArrayList();
 
 		ltpath = generate_spline();
-		Instantiate(core, tileMap.CenterPosition(new Vector3(end.x, end.y, end.z)), Quaternion.identity);
+		GameObject built_core = Instantiate(core, tileMap.CenterPosition(new Vector3(end.x, end.y, end.z)), Quaternion.identity);
+
+		built_core.GetComponent<Core>().core_explosion = core_explosion;
 		//+ core.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y/2
 	}
 

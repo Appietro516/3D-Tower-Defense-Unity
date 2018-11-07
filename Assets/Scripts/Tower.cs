@@ -8,6 +8,7 @@ public class Tower : MonoBehaviour {
 	public int damage;
 	public float reload_time;
 	public int upgradeCost = 25;
+	public int upgradeBankCost = 50;
 
 	public int price;
 
@@ -17,6 +18,8 @@ public class Tower : MonoBehaviour {
 
 	private bool loaded = true;
 	private float since_fired = 0;
+
+	public bool bank = false;
 
 	private LineRenderer line;
 	private Light pointlight;
@@ -30,7 +33,7 @@ public class Tower : MonoBehaviour {
 		pointlight = this.gameObject.GetComponent<Light>();
 
 	}
-
+	//TODO: make abstract class for tower
 	// Update is called once per frame
 	void Update () {
 
@@ -61,7 +64,7 @@ public class Tower : MonoBehaviour {
 			line.SetPositions(points);
 		}
 
-		if(loaded){
+		if(loaded && !bank){
 			if(enemy != null && inRange(enemy)){
 				loaded = false;
 				Enemy enemy_stats = enemy.GetComponent<Enemy>();
@@ -96,31 +99,34 @@ public class Tower : MonoBehaviour {
 	private GameObject getTarget(){
 		GameObject target = null;
 
-		foreach(GameObject enemy in CreatePath.enemies){
-			if (inRange(enemy)){
-				if (target == null){
-					target = enemy;
-					continue;
-				}
 
-				Enemy enemy_stats = enemy.GetComponent<Enemy>();
-				Enemy target_stats = target.GetComponent<Enemy>();
+		if (!bank){
+			foreach(GameObject enemy in CreatePath.enemies){
+				if (inRange(enemy)){
+					if (target == null){
+						target = enemy;
+						continue;
+					}
 
-				if(!speed_targets){
-					if (low_health_targets){
-						if(enemy_stats.health < target_stats.health){
-							target = enemy;
+					Enemy enemy_stats = enemy.GetComponent<Enemy>();
+					Enemy target_stats = target.GetComponent<Enemy>();
+
+					if(!speed_targets){
+						if (low_health_targets){
+							if(enemy_stats.health < target_stats.health){
+								target = enemy;
+							}
+						}
+						else{
+							if(enemy_stats.health > target_stats.health){
+								target = enemy;
+							}
 						}
 					}
 					else{
-						if(enemy_stats.health > target_stats.health){
+						if(enemy_stats.speed > target_stats.speed){
 							target = enemy;
 						}
-					}
-				}
-				else{
-					if(enemy_stats.speed > target_stats.speed){
-						target = enemy;
 					}
 				}
 
@@ -137,6 +143,14 @@ public class Tower : MonoBehaviour {
 		else{
 			gameObject.GetComponent<Renderer>().material.color = init_color;
 		}
+		if(Input.GetMouseButtonDown(1)){
+			if (PlayerBehaviors.money >= upgradeBankCost){
+				gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+				init_color = Color.yellow;
+				this.bank = true;
+				PlayerBehaviors.money -= upgradeBankCost;
+			}
+		}
 	}
 
 	void OnMouseExit(){
@@ -145,7 +159,7 @@ public class Tower : MonoBehaviour {
 
 	void OnMouseDown(){
 		if (!PlayerBehaviors.paused){
-			if (PlayerBehaviors.money >= upgradeCost){
+			if (PlayerBehaviors.money >= upgradeCost && !bank){
 				range += 1;
 				PlayerBehaviors.money -= upgradeCost;
 			}

@@ -57,6 +57,7 @@ public class TileMapMouse : MonoBehaviour {
 						GameObject built_tower = Object.Instantiate(tower);
 						built_tower.transform.position = new Vector3(selectionCube.transform.position.x, 1f, selectionCube.transform.position.z);
 
+						CreatePath.towers.Add(built_tower);
 						PlayerBehaviors.money -= tower.GetComponent<Tower>().price;
 					}
 

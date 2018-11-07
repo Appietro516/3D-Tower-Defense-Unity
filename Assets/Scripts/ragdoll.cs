@@ -8,6 +8,7 @@ public class ragdoll : MonoBehaviour {
 	public float timer = 0;
 	public float existance = 2f;
 	public int force;
+	public int mag = 1;
 
 	private bool impulsed = false;
 
@@ -22,7 +23,7 @@ public class ragdoll : MonoBehaviour {
 
 	void FixedUpdate(){
 		if (!impulsed){
-			Vector3 forcevect = new Vector3(Random.Range( -1.0f, 1.0f ) ,force, Random.Range( -1.0f, 1.0f ));
+			Vector3 forcevect = new Vector3(Random.Range( -1.0f*mag, 1.0f*mag ) ,force, Random.Range( -1.0f*mag, 1.0f*mag ));
 			this.gameObject.GetComponent<Rigidbody>().AddForce(forcevect, ForceMode.Impulse);
 			impulsed = true;
 		}

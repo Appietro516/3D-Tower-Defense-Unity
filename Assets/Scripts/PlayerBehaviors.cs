@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerBehaviors : MonoBehaviour {
 
-	[SerializeField] public static int money = 100;
+	[SerializeField] public static int money = 125;
 	[SerializeField] public static int health = 50;
 	[SerializeField] public static int wave = 0;
+	[SerializeField] public static int enemiesKilled = 0;
 
 	public static bool paused = false;
 	public static bool gamover = false;
@@ -15,6 +16,7 @@ public class PlayerBehaviors : MonoBehaviour {
 	public GameObject controls;
 	public GameObject reminder;
 	public GameObject exits;
+	public AudioSource musicplayer;
 
 
 
@@ -39,10 +41,18 @@ public class PlayerBehaviors : MonoBehaviour {
 			 Application.Quit();
 		}
 
-		if(gamover){
-			Time.timeScale = 0;
-			exits.SetActive(true);
+		if (Input.GetButtonDown("Mute")){
+			 musicplayer.mute = !musicplayer.mute;
 		}
 
+		if(gamover){
+			Invoke("Gameover",2);
+		}
+
+	}
+
+	private void Gameover(){
+		Time.timeScale = 0;
+		exits.SetActive(true);
 	}
 }

@@ -54,8 +54,8 @@ public class EnemySpawn : MonoBehaviour {
 
 				//generate enemy
 				Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
-				int temp_points = Random.Range(1 + (PlayerBehaviors.wave * 2), 6 + (PlayerBehaviors.wave*3));
-				enemy_stats.value = (int)Mathf.Ceil(temp_points/4.0f);
+				int temp_points = Random.Range(1 + (PlayerBehaviors.wave), 6 + (PlayerBehaviors.wave));
+				enemy_stats.value = 5;
 
 				points -= temp_points;
 
@@ -63,7 +63,7 @@ public class EnemySpawn : MonoBehaviour {
 				enemy_stats.health = Random.Range(2,temp_points);
 				temp_points -= enemy_stats.health;
 
-				enemy_stats.speed = Random.Range(1,temp_points);
+				enemy_stats.speed = Random.Range(2,temp_points);
 				temp_points -= enemy_stats.speed;
 
 				enemy_stats.damage = Mathf.Max(1,temp_points);

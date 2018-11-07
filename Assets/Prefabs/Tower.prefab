@@ -149,8 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 3
   damage: 1
-  reload_time: 0.5
-  upgradeCost: 15
+  reload_time: 1
+  upgradeCost: 25
   price: 50
   low_health_targets: 1
   speed_targets: 0

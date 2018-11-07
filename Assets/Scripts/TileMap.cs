@@ -11,9 +11,21 @@ public class TileMap : MonoBehaviour {
 	public int size_z = 50;
 	public float tileSize = 1.0f;
 
+	public bool[,] buildable;
+
+
 	// Use this for initialization
 	void Start () {
 		BuildMesh();
+
+
+		buildable = new bool[size_x, size_z];
+		for (int i = 0; i < size_x; i++){
+			for (int j = 0; j < size_z; j++){
+				buildable[i, j] = true;
+
+			}
+		}
 	}
 
 	public void BuildMesh() {
@@ -40,7 +52,7 @@ public class TileMap : MonoBehaviour {
 				uv[ z * vsize_x + x ] = new Vector2( (float)x / vsize_x, (float)z / vsize_z );
 			}
 		}
-		Debug.Log ("Done Verts!");
+		//Debug.Log ("Done Verts!");
 
 		for(z=0; z < size_z; z++) {
 			for(x=0; x < size_x; x++) {
@@ -55,7 +67,7 @@ public class TileMap : MonoBehaviour {
 			}
 		}
 
-		Debug.Log ("Done Triangles!");
+		//Debug.Log ("Done Triangles!");
 
 		// Create a new Mesh and populate with the data
 		Mesh mesh = new Mesh();
@@ -71,7 +83,7 @@ public class TileMap : MonoBehaviour {
 
 		mesh_filter.mesh = mesh;
 		mesh_collider.sharedMesh = mesh;
-		Debug.Log ("Done Mesh!");
+		//Debug.Log ("Done Mesh!");
 
 	}
 
@@ -81,11 +93,15 @@ public class TileMap : MonoBehaviour {
 	}
 
 	public float ItoPos(float tileIndex){
-		return tileIndex*tileSize;
+		return (tileIndex-12)*tileSize;
 	}
 
 	public float PostoI(float tileIndex){
-		return tileIndex/tileSize;
+		return (tileIndex+12)/tileSize;
+	}
+
+	public bool canBuildOn(float x, float z){
+		return buildable[(int)x, (int)z];
 	}
 
 }

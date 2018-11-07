@@ -34,7 +34,6 @@ public class CreatePath : MonoBehaviour {
 		map_size = tileMap.size_x;
 		enemies = new ArrayList();
 
-
 		ltpath = generate_spline();
 		Instantiate(core, tileMap.CenterPosition(new Vector3(end.x, end.y, end.z)), Quaternion.identity);
 		//+ core.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y/2
@@ -48,9 +47,9 @@ public class CreatePath : MonoBehaviour {
 
 		current_path[0] = start_control;
 
-		Vector3 start = new Vector3(Random.Range(-1*map_size/2, map_size/2), path_y_offset,-1*map_size/2);
-		current_path[1] = start;
+		Vector3 start = new Vector3(Random.Range(-1*map_size/2 + 1, map_size/2), path_y_offset,-1*map_size/2 + .5f);
 		print(start);
+		current_path[1] = start;
 
 		Vector3 inter = start;
 		Vector3 last_inter = new Vector3(map_size, path_y_offset, map_size); //impossible vector
@@ -67,7 +66,7 @@ public class CreatePath : MonoBehaviour {
 		Vector3 end_control = new Vector3(end.x, path_y_offset,end.z-1);
 		current_path[3+(segments)] = end_control;
 		current_path[2+(segments)] = end;
-		print(end);
+		//print(end);
 
 		return new LTSpline(current_path);
 

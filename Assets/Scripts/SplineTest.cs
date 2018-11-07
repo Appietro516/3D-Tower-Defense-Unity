@@ -11,18 +11,31 @@ public class SplineTest : MonoBehaviour {
 	public CreatePath mg;
 	public int speed;
 
+	private int life = 3;
+
+	public TileMap _tileMap;
+
 	void Start() {
-		LeanTween.moveSpline(lt, mg.ltpath, 1);
+		LeanTween.moveSpline(lt, mg.ltpath, life);
 		this.gameObject.GetComponent<TrailRenderer>().enabled=true;
+		Invoke("destroythis", life);
+	}
 
+	void Update(){
+		float x = _tileMap.PostoI(this.transform.position.x );
+		float z = _tileMap.PostoI(this.transform.position.z);
+
+		//print("x: " + (int)x);
+		//print("z: " + (int)z);
+
+
+		_tileMap.buildable[(int)x , (int)z] = false;
 
 
 	}
 
-	void OnTriggerEnter(Collider other){
-		BuildableTile t = other.GetComponent<BuildableTile>();
-		if (t != null){
-			t.buildable = false;
-		}
+	void destroythis(){
+		Destroy(this);
 	}
+
 }

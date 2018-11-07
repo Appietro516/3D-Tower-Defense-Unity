@@ -11,7 +11,7 @@ public class TileMapMouse : MonoBehaviour {
 	public Transform selectionCube;
 	public GameObject tower;
 
-	private bool[,] buildable;
+	private bool buildable;
 
 	void Start() {
 		_tileMap = GetComponent<TileMap>();
@@ -19,14 +19,8 @@ public class TileMapMouse : MonoBehaviour {
 		selectionCube.position = _tileMap.CenterPosition(selectionCube.position);
 		selectionCube.localScale = new Vector3(_tileMap.tileSize/10, 1, _tileMap.tileSize/10);
 
-		buildable = new bool[_tileMap.size_x, _tileMap.size_z];
 
-		for (int i = 0; i < _tileMap.size_x; i++){
-			for (int j = 0; j < _tileMap.size_z; j++){
-				buildable[i, j] = true;
 
-			}
-		}
 	}
 
 	// Update is called once per frame
@@ -53,13 +47,12 @@ public class TileMapMouse : MonoBehaviour {
 		}
 
 		if(Input.GetMouseButtonDown(0)) {
-			bool buildableBool = buildable[(int)currentTileCoord.x +12, (int)currentTileCoord.z +12];
-			print(currentTileCoord);
+			//print(currentTileCoord);
 			//bool buildableBool = true;
 
 
 			if (!PlayerBehaviors.paused){
-				if (buildableBool){
+				if (this.buildable){
 					if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price){
 						GameObject built_tower = Object.Instantiate(tower);
 						built_tower.transform.position = new Vector3(selectionCube.transform.position.x, 1f, selectionCube.transform.position.z);
@@ -74,11 +67,11 @@ public class TileMapMouse : MonoBehaviour {
 	}
 
 	public void MouseOverTile(){
-		bool buildableBool = buildable[(int)currentTileCoord.x +12, (int)currentTileCoord.z +12];
+		//print("BUILDING CHECK:" + currentTileCoord.x + "," + currentTileCoord.z);
+		buildable = (_tileMap.canBuildOn(currentTileCoord.x + 12, currentTileCoord.z + 12));
 
-		//bool buildableBool = true;
 
-		if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price && !PlayerBehaviors.paused && buildableBool){
+		if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price && !PlayerBehaviors.paused && buildable){
 			selectionCube.gameObject.GetComponent<Renderer>().material.color = Color.green;
 
 		}

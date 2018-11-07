@@ -34,7 +34,7 @@ public class EnemySpawn : MonoBehaviour {
 				waveOn = true;
 				waveNotifier.SetActive(false);
 				PlayerBehaviors.wave += 1;
-				points = start_points * PlayerBehaviors.wave;
+				points = start_points * PlayerBehaviors.wave * 2;
 				wavetime = 0;
 			}
 		}
@@ -54,7 +54,7 @@ public class EnemySpawn : MonoBehaviour {
 
 				//generate enemy
 				Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
-				int temp_points = Random.Range(3, 6 + (PlayerBehaviors.wave*2));
+				int temp_points = Random.Range(1 + (PlayerBehaviors.wave * 2), 6 + (PlayerBehaviors.wave*3));
 				enemy_stats.value = (int)Mathf.Ceil(temp_points/4.0f);
 
 				points -= temp_points;

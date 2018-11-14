@@ -12,9 +12,11 @@ public abstract class AbstractTower : MonoBehaviour {
 	public int upgradeCost = 25;
 	public int price;
 
-	//state tracking
+	//reloading
 	protected bool loaded = true;
 	protected float since_fired = 0;
+
+	//this needs to be moved but im sticking it here for now
 	protected bool low_health_targets = true;
 	protected bool speed_targets = false;
 
@@ -24,13 +26,18 @@ public abstract class AbstractTower : MonoBehaviour {
 	protected Color init_color;
 
 
-	void Start () {
+	//GUI info
+	protected string descr = "This is not implimented";
+
+
+	public virtual void Start () {
 		init_color = gameObject.GetComponent<Renderer>().material.color;
 		line = this.gameObject.GetComponent<LineRenderer>();
 		pointlight = this.gameObject.GetComponent<Light>();
 	}
 
-	void Update () {
+
+	public virtual void Update () {
 		if (Input.GetButtonDown("Toggle")){
 		  low_health_targets = true;
 		  speed_targets = false;
@@ -44,14 +51,16 @@ public abstract class AbstractTower : MonoBehaviour {
 		  speed_targets = true;
 		}
 
-		if(loaded){
-			loaded = fire();
+		if (reload_time >= 0){
+			if(loaded){
+				loaded = fire();
 
-		}
-		else{
-			since_fired += Time.deltaTime;
-			if(since_fired >= reload_time){
-				loaded = true;
+			}
+			else{
+				since_fired += Time.deltaTime;
+				if(since_fired >= reload_time){
+					loaded = true;
+				}
 			}
 		}
 
@@ -60,7 +69,7 @@ public abstract class AbstractTower : MonoBehaviour {
 	}
 
 
-	void OnMouseOver(){
+	protected void OnMouseOver(){
 		if (PlayerBehaviors.money >= upgradeCost){
 			gameObject.GetComponent<Renderer>().material.color = Color.green;
 		}
@@ -69,7 +78,7 @@ public abstract class AbstractTower : MonoBehaviour {
 		}
 	}
 
-	void OnMouseExit(){
+	protected void OnMouseExit(){
 		gameObject.GetComponent<Renderer>().material.color = init_color;
 	}
 
@@ -84,9 +93,10 @@ public abstract class AbstractTower : MonoBehaviour {
 
 
 	//methods to implment
-	public abstract bool fire();
+	protected abstract bool fire();
 
-	public abstract void miscUpdate();
+	protected abstract void miscUpdate();
+
 
 
 

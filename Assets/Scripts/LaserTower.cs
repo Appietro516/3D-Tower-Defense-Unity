@@ -5,7 +5,11 @@ using UnityEngine;
 public class LaserTower: AbstractTower {
 	GameObject targetedEnemy = null;
 
-	public override bool fire(){
+	public override void Start () {
+		base.Start();
+	}
+
+	protected override bool fire(){
 		if(targetedEnemy != null && inRange(targetedEnemy)){
 			loaded = false;
 			Enemy enemy_stats = targetedEnemy.GetComponent<Enemy>();
@@ -19,7 +23,7 @@ public class LaserTower: AbstractTower {
 		return false;
 	}
 
-	public override void miscUpdate(){
+	protected override void miscUpdate(){
 		Vector3[] points = new Vector3[2];
 		if(targetedEnemy){
 			points[0] = Vector3.Scale(this.gameObject.transform.position, new Vector3(1,2f,1));

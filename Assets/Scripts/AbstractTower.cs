@@ -23,36 +23,55 @@ public abstract class AbstractTower : MonoBehaviour {
 	private Light pointlight;
 	private Color init_color;
 
+
 	void Start () {
 		init_color = gameObject.GetComponent<Renderer>().material.color;
 		line = this.gameObject.GetComponent<LineRenderer>();
 		pointlight = this.gameObject.GetComponent<Light>();
 	}
 
-	//to impliment
-	void Update ();
+	void Update () {
+		if (Input.GetButtonDown("Toggle")){
+		  low_health_targets = true;
+		  speed_targets = false;
+		}
+		if (Input.GetButtonDown("Toggle2")){
+		  low_health_targets = false;
+		  speed_targets = false;
+		}
 
-	private void highlight();
+		if (Input.GetButtonDown("Fast")){
+		  speed_targets = true;
+		}
 
-	private void unhighlight();
+		if(loaded){
+			loaded = fire();
+
+		}
+		else{
+			since_fired += Time.deltaTime;
+			if(since_fired >= reload_time){
+				loaded = true;
+			}
+		}
+
+		miscUpdate();
+
+	}
 
 
-	//implimented
+	abstract void OnMouseOver();
 
-	void OnMouseOver(
-		//highlight();
-		//display in inspector?
-	);
+	abstract void OnMouseExit();
 
-	void OnMouseExit(
-		//unhighlight();
-	);
+	abstract void OnMouseDown();
 
-	void OnMouseDown(
-		//if upgrade-able, then upgrade
-		//display upgrade menu?
+	abstract bool fire();
 
-	);
+	//abstract GameObject getTarget();
+
+	abstract void miscUpdate();
+
 
 
 	bool inRange(GameObject other){

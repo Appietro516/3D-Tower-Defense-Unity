@@ -13,15 +13,15 @@ public abstract class AbstractTower : MonoBehaviour {
 	public int price;
 
 	//state tracking
-	private bool loaded = true;
-	private float since_fired = 0;
-	private bool low_health_targets = true;
-	private bool speed_targets = false;
+	protected bool loaded = true;
+	protected float since_fired = 0;
+	protected bool low_health_targets = true;
+	protected bool speed_targets = false;
 
 	//display stuff
-	private LineRenderer line;
-	private Light pointlight;
-	private Color init_color;
+	protected LineRenderer line;
+	protected Light pointlight;
+	protected Color init_color;
 
 
 	void Start () {
@@ -60,26 +60,36 @@ public abstract class AbstractTower : MonoBehaviour {
 	}
 
 
-	abstract void OnMouseOver();
+	void OnMouseOver(){
+		if (PlayerBehaviors.money >= upgradeCost){
+			gameObject.GetComponent<Renderer>().material.color = Color.green;
+		}
+		else{
+			gameObject.GetComponent<Renderer>().material.color = init_color;
+		}
+	}
 
-	abstract void OnMouseExit();
-
-	abstract void OnMouseDown();
-
-	abstract bool fire();
-
-	//abstract GameObject getTarget();
-
-	abstract void miscUpdate();
+	void OnMouseExit(){
+		gameObject.GetComponent<Renderer>().material.color = init_color;
+	}
 
 
 
-	bool inRange(GameObject other){
+	protected bool inRange(GameObject other){
 		Vector3 thisPos = this.gameObject.transform.position;
 		Vector3 otherPos = other.transform.position;
 
 		return (Vector3.Distance(thisPos, otherPos) <= range);
 	}
+
+
+	//methods to implment
+	public abstract bool fire();
+
+	public abstract void miscUpdate();
+
+
+
 
 
 

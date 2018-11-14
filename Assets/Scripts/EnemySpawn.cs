@@ -47,6 +47,18 @@ public class EnemySpawn : MonoBehaviour {
 
 		enemy_stats.damage = Mathf.Max(1,temp_points);
 
+		int max_stat = Mathf.Max(enemy_stats.health, enemy_stats.speed, enemy_stats.damage);
+		if (max_stat == enemy_stats.health){
+			current_enemy.GetComponent<Renderer>().material.color = Color.green;
+		}
+		else if (max_stat == enemy_stats.speed){
+			current_enemy.GetComponent<Renderer>().material.color = Color.blue;
+		}
+
+		else if (max_stat == enemy_stats.damage){
+			current_enemy.GetComponent<Renderer>().material.color = Color.red;
+		}
+
 		return current_enemy;
 
 	}

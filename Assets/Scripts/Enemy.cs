@@ -30,9 +30,6 @@ public class Enemy : MonoBehaviour {
 
 	}
 
-	public void take_damage(int deltaHealth){
-		this.health -= deltaHealth;
-	}
 
 	private bool isDead(){
 		return health <= 0;

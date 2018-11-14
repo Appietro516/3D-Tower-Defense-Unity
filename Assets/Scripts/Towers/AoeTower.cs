@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AoeTower : MonoBehaviour {
+public class AoeTower : AbstractTower {
 
 	// Use this for initialization
 	public override void Start () {
-		base.start();
+		base.Start();
 	}
 
 	protected override bool fire(){
@@ -20,7 +20,7 @@ public class AoeTower : MonoBehaviour {
 		return true;
 	}
 
-	protected abstract void miscUpdate(){
+	protected override void miscUpdate(){
 		//add some cool explosion animation here
 	}
 

@@ -15,6 +15,10 @@ public class EnemySpawn : MonoBehaviour {
 
 	public GameObject waveNotifier;
 
+	delegate GameObject CreateEnemyPointer();
+    CreateEnemyPointer CreateEnemy;
+
+
 
 	public int start_points;
 
@@ -23,6 +27,28 @@ public class EnemySpawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		CreateEnemy = CreateBasic;
+	}
+
+	GameObject CreateBasic(){
+		GameObject current_enemy = Object.Instantiate(enemy);
+		Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
+		int temp_points = Random.Range(1 + (PlayerBehaviors.wave), 6 + (PlayerBehaviors.wave*2));
+		enemy_stats.value = 5;
+
+		points -= temp_points;
+
+
+		enemy_stats.health = Random.Range(2,temp_points);
+		temp_points -= enemy_stats.health;
+
+		enemy_stats.speed = Random.Range(2,temp_points);
+		temp_points -= enemy_stats.speed;
+
+		enemy_stats.damage = Mathf.Max(1,temp_points);
+
+		return current_enemy;
+
 	}
 
 	// Update is called once per frame
@@ -44,34 +70,15 @@ public class EnemySpawn : MonoBehaviour {
 			time += Time.deltaTime * Time.timeScale;
 			if ((time) >= SpawnTimer){
 				if (points >= 0){
-					current_enemy = Object.Instantiate(enemy);
 					this.time = 0;
+					current_enemy = CreateEnemy();
 					SpawnTimer = Random.Range(0.2f, 1.0f);
 				}
 
 			}
 			if (current_enemy != null){
-
-				//generate enemy
-				Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
-				int temp_points = Random.Range(1 + (PlayerBehaviors.wave), 6 + (PlayerBehaviors.wave*2));
-				enemy_stats.value = 5;
-
-				points -= temp_points;
-
-
-				enemy_stats.health = Random.Range(2,temp_points);
-				temp_points -= enemy_stats.health;
-
-				enemy_stats.speed = Random.Range(2,temp_points);
-				temp_points -= enemy_stats.speed;
-
-				enemy_stats.damage = Mathf.Max(1,temp_points);
-
-
-
 				//move enemy_stats
-				LeanTween.moveSpline(current_enemy, mg.ltpath, mg.ltpath.distance * Time.timeScale/enemy_stats.speed);
+				LeanTween.moveSpline(current_enemy, mg.ltpath, mg.ltpath.distance * Time.timeScale/current_enemy.GetComponent<Enemy>().speed);
 
 				//add enemy to global enemy list
 				if (current_enemy != null){

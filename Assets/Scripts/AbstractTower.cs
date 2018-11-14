@@ -21,8 +21,6 @@ public abstract class AbstractTower : MonoBehaviour {
 	protected bool speed_targets = false;
 
 	//display stuff
-	protected LineRenderer line;
-	protected Light pointlight;
 	protected Color init_color;
 
 
@@ -32,8 +30,6 @@ public abstract class AbstractTower : MonoBehaviour {
 
 	public virtual void Start () {
 		init_color = gameObject.GetComponent<Renderer>().material.color;
-		line = this.gameObject.GetComponent<LineRenderer>();
-		pointlight = this.gameObject.GetComponent<Light>();
 	}
 
 
@@ -53,7 +49,7 @@ public abstract class AbstractTower : MonoBehaviour {
 
 		if (reload_time >= 0){
 			if(loaded){
-				loaded = fire();
+				loaded = !fire();
 
 			}
 			else{

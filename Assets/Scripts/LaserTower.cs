@@ -5,13 +5,18 @@ using UnityEngine;
 public class LaserTower: AbstractTower {
 	GameObject targetedEnemy = null;
 
+	//display stuff for laser tower
+	protected LineRenderer line;
+	protected Light pointlight;
+
 	public override void Start () {
 		base.Start();
+		line = this.gameObject.GetComponent<LineRenderer>();
+		pointlight = this.gameObject.GetComponent<Light>();
 	}
 
 	protected override bool fire(){
 		if(targetedEnemy != null && inRange(targetedEnemy)){
-			loaded = false;
 			Enemy enemy_stats = targetedEnemy.GetComponent<Enemy>();
 			enemy_stats.health-= damage;
 			since_fired = 0;

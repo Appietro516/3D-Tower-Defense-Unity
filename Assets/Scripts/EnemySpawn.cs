@@ -84,8 +84,8 @@ public class EnemySpawn : MonoBehaviour {
 			if(points <= 0 && CreatePath.enemies.Count == 0){
 				waveOn = false;
 				foreach(GameObject tower in CreatePath.towers){
-					Tower tower_stats = tower.GetComponent<Tower>();
-					if (tower_stats.bank == true){
+					AbstractTower tower_stats = tower.GetComponent<AbstractTower>();
+					if (tower_stats is BankTower){
 						PlayerBehaviors.money += 25;
 					}
 				}

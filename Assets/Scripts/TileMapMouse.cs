@@ -53,12 +53,12 @@ public class TileMapMouse : MonoBehaviour {
 
 			if (!PlayerBehaviors.paused){
 				if (this.buildable){
-					if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price){
+					if (PlayerBehaviors.money >= tower.GetComponent<AbstractTower>().price){
 						GameObject built_tower = Object.Instantiate(tower);
 						built_tower.transform.position = new Vector3(selectionCube.transform.position.x, 1f, selectionCube.transform.position.z);
 
 						CreatePath.towers.Add(built_tower);
-						PlayerBehaviors.money -= tower.GetComponent<Tower>().price;
+						PlayerBehaviors.money -= tower.GetComponent<AbstractTower>().price;
 					}
 
 
@@ -72,7 +72,7 @@ public class TileMapMouse : MonoBehaviour {
 		buildable = (_tileMap.canBuildOn(currentTileCoord.x + 12, currentTileCoord.z + 12));
 
 
-		if (PlayerBehaviors.money >= tower.GetComponent<Tower>().price && !PlayerBehaviors.paused && buildable){
+		if (PlayerBehaviors.money >= tower.GetComponent<AbstractTower>().price && !PlayerBehaviors.paused && buildable){
 			selectionCube.gameObject.GetComponent<Renderer>().material.color = Color.green;
 
 		}

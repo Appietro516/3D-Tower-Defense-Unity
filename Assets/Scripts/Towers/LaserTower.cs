@@ -11,6 +11,7 @@ public class LaserTower: AbstractTower {
 
 	public override void Start () {
 		base.Start();
+		this.Name = "Laser Tower";
 		line = this.gameObject.GetComponent<LineRenderer>();
 		pointlight = this.gameObject.GetComponent<Light>();
 	}
@@ -42,15 +43,6 @@ public class LaserTower: AbstractTower {
 		}
 	}
 
-
-	void OnMouseDown(){
-		if (!PlayerBehaviors.paused){
-			if (PlayerBehaviors.money >= upgradeCost){
-				range += 1;
-				PlayerBehaviors.money -= upgradeCost;
-			}
-		}
-	}
 
 
 }

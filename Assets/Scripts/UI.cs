@@ -5,7 +5,10 @@ using TMPro;
 
 public class UI : MonoBehaviour {
 
-	public TextMeshProUGUI UItext;
+	public TextMeshProUGUI scores;
+	public TextMeshProUGUI towerText;
+
+	public TowerSelector ts;
 
 	// Use this for initialization
 	void Start () {
@@ -13,10 +16,18 @@ public class UI : MonoBehaviour {
 	}
 
 	void Update () {
-		this.UItext.SetText("Money: " + PlayerBehaviors.money + "\n" + "Health: " + PlayerBehaviors.health +"\n" + "Wave: " + PlayerBehaviors.wave + "\n"+ "Mobs Defeated: " + PlayerBehaviors.enemiesKilled + "\n");
-
-
+		UpdateScores();
+		UpdateTower();
    	}
+
+	void UpdateScores(){
+		this.scores.SetText("Money: " + PlayerBehaviors.money + "\n" + "Health: " + PlayerBehaviors.health +"\n" + "Wave: " + PlayerBehaviors.wave + "\n"+ "Mobs Defeated: " + PlayerBehaviors.enemiesKilled + "\n");
+	}
+
+	void UpdateTower(){
+		string name = ts.currentComp.name;
+		towerText.SetText("Currently Selected Tower: \n" + name);
+	}
 
 
 }

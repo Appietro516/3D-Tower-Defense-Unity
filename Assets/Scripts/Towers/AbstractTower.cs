@@ -25,8 +25,8 @@ public abstract class AbstractTower : MonoBehaviour {
 
 
 	//GUI info
-	protected string descr = "This is not implimented";
-	protected string name = "AbstractTower";
+	protected string Descr = "This is not implimented";
+	protected string Name = "AbstractTower";
 
 
 	public virtual void Start () {
@@ -65,7 +65,7 @@ public abstract class AbstractTower : MonoBehaviour {
 
 	}
 
-
+	//mouse interactions.
 	protected void OnMouseOver(){
 		if (PlayerBehaviors.money >= upgradeCost){
 			gameObject.GetComponent<Renderer>().material.color = Color.green;
@@ -79,6 +79,18 @@ public abstract class AbstractTower : MonoBehaviour {
 		gameObject.GetComponent<Renderer>().material.color = init_color;
 	}
 
+
+	void OnMouseDown(){
+		if (!PlayerBehaviors.paused){
+			if (PlayerBehaviors.money >= upgradeCost){
+				range += 1;
+				PlayerBehaviors.money -= upgradeCost;
+			}
+		}
+	}
+
+
+	//helpful functions
 	protected GameObject getTarget(){
 		GameObject target = null;
 
@@ -127,5 +139,6 @@ public abstract class AbstractTower : MonoBehaviour {
 	protected abstract bool fire();
 
 	protected abstract void miscUpdate();
+
 
 }

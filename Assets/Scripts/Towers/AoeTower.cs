@@ -7,6 +7,7 @@ public class AoeTower : AbstractTower {
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
+		this.Name = "AOE Tower";
 	}
 
 	protected override bool fire(){
@@ -21,7 +22,7 @@ public class AoeTower : AbstractTower {
 	}
 
 	protected override void miscUpdate(){
-		
+
 	}
 
 

@@ -5,8 +5,13 @@ using UnityEngine;
 public class TowerSelector : MonoBehaviour {
 
 	public GameObject[] towers;
+	public AbstractTower currentComp;
 
 	private int selectedTower = 0;
+
+	void Start(){
+		currentComp = getTowerComp();
+	}
 
 	void Update () {
 		if (Input.GetButtonDown("advance")){
@@ -14,6 +19,7 @@ public class TowerSelector : MonoBehaviour {
 			if (selectedTower >= towers.Length){
 				selectedTower = 0;
 			}
+			currentComp = getTowerComp();
 		}
 
 		else if (Input.GetButtonDown("back")){
@@ -21,6 +27,7 @@ public class TowerSelector : MonoBehaviour {
 			if (selectedTower < 0){
 				selectedTower = towers.Length - 1;
 			}
+			currentComp = getTowerComp();
 		}
 
 	}
@@ -28,6 +35,10 @@ public class TowerSelector : MonoBehaviour {
 	public GameObject getTower(){
 		return towers[selectedTower];
 
+	}
+
+	private AbstractTower getTowerComp(){
+		return this.getTower().GetComponent<AbstractTower>();
 	}
 
 }

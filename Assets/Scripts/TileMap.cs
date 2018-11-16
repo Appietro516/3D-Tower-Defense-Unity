@@ -5,6 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshCollider))]
+
 public class TileMap : MonoBehaviour {
 
 	public int size_x = 100;

@@ -21,7 +21,7 @@ public class AoeTower : AbstractTower {
 	}
 
 	protected override void miscUpdate(){
-		//add some cool explosion animation here
+		
 	}
 
 

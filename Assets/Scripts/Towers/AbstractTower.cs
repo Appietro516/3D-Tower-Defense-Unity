@@ -16,7 +16,7 @@ public abstract class AbstractTower : MonoBehaviour {
 	protected bool loaded = true;
 	protected float since_fired = 0;
 
-	//this needs to be moved but im sticking it here for now
+	//TODO:this needs to be moved but im sticking it here for now
 	protected bool low_health_targets = true;
 	protected bool speed_targets = false;
 
@@ -26,6 +26,7 @@ public abstract class AbstractTower : MonoBehaviour {
 
 	//GUI info
 	protected string descr = "This is not implimented";
+	protected string name = "AbstractTower";
 
 
 	public virtual void Start () {
@@ -78,7 +79,41 @@ public abstract class AbstractTower : MonoBehaviour {
 		gameObject.GetComponent<Renderer>().material.color = init_color;
 	}
 
+	protected GameObject getTarget(){
+		GameObject target = null;
 
+		foreach(GameObject targetedEnemy in CreatePath.enemies){
+			if (inRange(targetedEnemy)){
+				if (target == null){
+					target = targetedEnemy;
+					continue;
+				}
+
+			 	Enemy enemy_stats = targetedEnemy.GetComponent<Enemy>();
+				Enemy target_stats = target.GetComponent<Enemy>();
+
+				if(!speed_targets){
+					if (low_health_targets){
+						if(enemy_stats.health < target_stats.health){
+							target = targetedEnemy;
+						}
+					}
+					else{
+						if(enemy_stats.health > target_stats.health){
+							target = targetedEnemy;
+						}
+					}
+				}
+				else{
+					if(enemy_stats.speed > target_stats.speed){
+						target = targetedEnemy;
+					}
+				}
+			}
+
+		}
+		return target;
+	}
 
 	protected bool inRange(GameObject other){
 		Vector3 thisPos = this.gameObject.transform.position;
@@ -92,11 +127,5 @@ public abstract class AbstractTower : MonoBehaviour {
 	protected abstract bool fire();
 
 	protected abstract void miscUpdate();
-
-
-
-
-
-
 
 }

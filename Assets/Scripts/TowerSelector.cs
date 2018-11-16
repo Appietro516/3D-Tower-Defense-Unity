@@ -4,32 +4,30 @@ using UnityEngine;
 
 public class TowerSelector : MonoBehaviour {
 
-	public AbstractTower[] towers;
+	public GameObject[] towers;
 
 	private int selectedTower = 0;
 
-
-	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown("advance")){
-			i+=1;
-			if (i >= towers.length){
-				i = 0;
+			selectedTower += 1;
+			if (selectedTower >= towers.Length){
+				selectedTower = 0;
 			}
-
 		}
 
-		elif (Input.GetButtonDown("back")){
-			i-=1;
-			if (i < 0){
-				i = tower.length-1;
+		else if (Input.GetButtonDown("back")){
+			selectedTower -= 1;
+			if (selectedTower < 0){
+				selectedTower = towers.Length - 1;
 			}
-
 		}
 
 	}
 
 	public GameObject getTower(){
-		return towers[i];
+		return towers[selectedTower];
+
 	}
+
 }

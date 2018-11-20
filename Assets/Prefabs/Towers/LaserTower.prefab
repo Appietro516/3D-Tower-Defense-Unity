@@ -168,6 +168,8 @@ MonoBehaviour:
   reload_time: 1
   upgradeCost: 25
   price: 50
+  descrStr: This is not implimented
+  nameStr: Laser Tower
 --- !u!120 &120037372705517796
 LineRenderer:
   m_ObjectHideFlags: 1

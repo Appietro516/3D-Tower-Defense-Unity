@@ -129,3 +129,5 @@ MonoBehaviour:
   reload_time: 3
   upgradeCost: 25
   price: 50
+  descrStr: A tower that fires slow but hits everything in a radius arond it
+  nameStr: AOE Tower

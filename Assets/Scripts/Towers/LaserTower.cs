@@ -9,9 +9,10 @@ public class LaserTower: AbstractTower {
 	protected LineRenderer line;
 	protected Light pointlight;
 
+
 	public override void Start () {
+		Debug.Log("start ran!");
 		base.Start();
-		this.Name = "Laser Tower";
 		line = this.gameObject.GetComponent<LineRenderer>();
 		pointlight = this.gameObject.GetComponent<Light>();
 	}

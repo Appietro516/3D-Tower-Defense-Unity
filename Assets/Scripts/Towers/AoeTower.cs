@@ -6,8 +6,8 @@ public class AoeTower : AbstractTower {
 
 	// Use this for initialization
 	public override void Start () {
+		Debug.Log("start ran!");
 		base.Start();
-		this.Name = "AOE Tower";
 	}
 
 	protected override bool fire(){

@@ -25,9 +25,8 @@ public abstract class AbstractTower : MonoBehaviour {
 
 
 	//GUI info
-	protected string Descr = "This is not implimented";
-	protected string Name = "AbstractTower";
-
+	public string descrStr;
+	public string nameStr;
 
 	public virtual void Start () {
 		init_color = gameObject.GetComponent<Renderer>().material.color;

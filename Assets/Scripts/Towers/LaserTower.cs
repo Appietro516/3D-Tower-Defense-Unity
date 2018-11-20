@@ -32,16 +32,16 @@ public class LaserTower: AbstractTower {
 
 	protected override void miscUpdate(){
 		Vector3[] points = new Vector3[2];
-		if(targetedEnemy){
+		if(targetedEnemy != null){
+			Debug.Log("toggling points");
 			points[0] = Vector3.Scale(this.gameObject.transform.position, new Vector3(1,2f,1));
 			points[1] = targetedEnemy.transform.position;
 			pointlight.enabled = true;
-			line.SetPositions(points);
 		}
 		else{
 			pointlight.enabled = false;
-			line.SetPositions(points);
 		}
+		line.SetPositions(points);
 	}
 
 

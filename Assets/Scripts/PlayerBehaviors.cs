@@ -14,7 +14,6 @@ public class PlayerBehaviors : MonoBehaviour {
 
 	public GameObject pausetext;
 	public GameObject controls;
-	public GameObject reminder;
 	public GameObject exits;
 	public AudioSource musicplayer;
 
@@ -33,8 +32,6 @@ public class PlayerBehaviors : MonoBehaviour {
 
 		if (Input.GetButtonDown("Controls")){
 		 	controls.SetActive(!controls.activeSelf);
-			reminder.SetActive(!reminder.activeSelf);
-
 	   	}
 
 		if (Input.GetButtonDown("Exit")){

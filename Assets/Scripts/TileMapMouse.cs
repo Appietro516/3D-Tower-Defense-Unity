@@ -57,6 +57,8 @@ public class TileMapMouse : MonoBehaviour {
 						GameObject built_tower = Object.Instantiate(ts.getTower());
 						built_tower.transform.position = new Vector3(selectionCube.transform.position.x, built_tower.transform.localScale.y/2, selectionCube.transform.position.z);
 
+						_tileMap.buildable[(int)(currentTileCoord.x + Mathf.Floor(_tileMap.size_x/2)), (int)(currentTileCoord.z + Mathf.Floor(_tileMap.size_x/2))] = false;
+
 						CreatePath.towers.Add(built_tower);
 						PlayerBehaviors.money -= ts.getTower().GetComponent<AbstractTower>().price;
 					}

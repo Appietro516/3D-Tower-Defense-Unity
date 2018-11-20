@@ -55,7 +55,7 @@ public class TileMapMouse : MonoBehaviour {
 				if (this.buildable){
 					if (PlayerBehaviors.money >= ts.getTower().GetComponent<AbstractTower>().price){
 						GameObject built_tower = Object.Instantiate(ts.getTower());
-						built_tower.transform.position = new Vector3(selectionCube.transform.position.x, 1f, selectionCube.transform.position.z);
+						built_tower.transform.position = new Vector3(selectionCube.transform.position.x, built_tower.transform.localScale.y/2, selectionCube.transform.position.z);
 
 						CreatePath.towers.Add(built_tower);
 						PlayerBehaviors.money -= ts.getTower().GetComponent<AbstractTower>().price;
@@ -69,7 +69,7 @@ public class TileMapMouse : MonoBehaviour {
 
 	public void MouseOverTile(){
 		//print("BUILDING CHECK:" + currentTileCoord.x + "," + currentTileCoord.z);
-		buildable = (_tileMap.canBuildOn(currentTileCoord.x + 12, currentTileCoord.z + 12));
+		buildable = (_tileMap.canBuildOn(currentTileCoord.x + Mathf.Floor(_tileMap.size_x/2), currentTileCoord.z + Mathf.Floor(_tileMap.size_x/2)));
 
 
 		if (PlayerBehaviors.money >= ts.getTower().GetComponent<AbstractTower>().price && !PlayerBehaviors.paused && buildable){

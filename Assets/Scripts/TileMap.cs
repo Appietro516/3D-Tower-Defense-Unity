@@ -94,11 +94,11 @@ public class TileMap : MonoBehaviour {
 	}
 
 	public float ItoPos(float tileIndex){
-		return (tileIndex-12)*tileSize;
+		return (tileIndex-Mathf.Floor(size_x/2))*tileSize;
 	}
 
 	public float PostoI(float tileIndex){
-		return (tileIndex+12)/tileSize;
+		return (tileIndex+Mathf.Floor(size_x/2))/tileSize;
 	}
 
 	public bool canBuildOn(float x, float z){

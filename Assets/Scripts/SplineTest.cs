@@ -17,12 +17,12 @@ public class SplineTest : MonoBehaviour {
 
 	void Start() {
 		LeanTween.moveSpline(lt, mg.ltpath, life);
-		this.gameObject.GetComponent<TrailRenderer>().enabled=true;
+		this.gameObject.GetComponent<TrailRenderer>().enabled = true;
 		Invoke("destroythis", life);
 	}
 
 	void Update(){
-		float x = _tileMap.PostoI(this.transform.position.x );
+		float x = _tileMap.PostoI(this.transform.position.x);
 		float z = _tileMap.PostoI(this.transform.position.z);
 
 		//print("x: " + (int)x);

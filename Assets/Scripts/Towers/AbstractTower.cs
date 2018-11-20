@@ -29,17 +29,16 @@ public abstract class AbstractTower : MonoBehaviour {
 	public string nameStr;
 
 	public GameObject rangeCircO;
-	private Transform rangeCirc;
+	public GameObject instRangeCirc;
+
 
 	public virtual void Start () {
 		init_color = gameObject.GetComponent<Renderer>().material.color;
-		GameObject instRangeCirc = Instantiate(this.rangeCircO, this.transform.position, Quaternion.identity);
+		updateCirc();
 
-		this.rangeCirc = instRangeCirc.transform;
 
-		this.rangeCirc.localScale = new Vector3(rangeCirc.localScale.x*range*2, rangeCirc.localScale.y, rangeCirc.localScale.z*range*2);
-		this.rangeCirc.position = new Vector3(this.transform.position.x, .01f, this.transform.position.z);
 	}
+
 
 
 	public virtual void Update () {
@@ -92,6 +91,7 @@ public abstract class AbstractTower : MonoBehaviour {
 		if (!PlayerBehaviors.paused){
 			if (PlayerBehaviors.money >= upgradeCost){
 				range += 1;
+				updateCirc();
 				PlayerBehaviors.money -= upgradeCost;
 			}
 		}
@@ -142,11 +142,24 @@ public abstract class AbstractTower : MonoBehaviour {
 		return (Vector3.Distance(thisPos, otherPos) <= range);
 	}
 
+	protected void updateCirc(){
+		Destroy(this.instRangeCirc);
+
+
+		instRangeCirc = Instantiate(this.rangeCircO, this.transform.position, Quaternion.identity);
+
+		this.instRangeCirc.transform.localScale = new Vector3(instRangeCirc.transform.localScale.x*range*2, instRangeCirc.transform.localScale.y, instRangeCirc.transform.localScale.z*range*2);
+
+		this.instRangeCirc.transform.position = new Vector3(this.transform.position.x, .01f, this.transform.position.z);
+	}
+
 
 	//methods to implment
 	protected abstract bool fire();
 
 	protected abstract void miscUpdate();
+
+
 
 
 }

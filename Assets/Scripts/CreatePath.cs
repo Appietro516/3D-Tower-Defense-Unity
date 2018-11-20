@@ -60,7 +60,7 @@ public class CreatePath : MonoBehaviour {
 		Vector3 last_inter = new Vector3(map_size, path_y_offset, map_size); //impossible vector
 		for(int i = 0; i < segments; i++){
 
-			inter = generate_random_z(inter.z + 1, inter.z + (map_size/2 - inter.z)/( segments-i));
+			inter = generate_random_z(inter.z + 2, inter.z + (map_size/2 - inter.z)/( segments-i));
 
 
 			current_path[i + 2]  = inter;
@@ -79,12 +79,12 @@ public class CreatePath : MonoBehaviour {
 	}
 
 	private Vector3 generate_random(){
-		return new Vector3(Random.Range(-1*map_size/2, map_size/2), path_y_offset,Random.Range(-1*map_size/2, map_size/2));
+		return new Vector3(Random.Range(-1*map_size/2 + 1, map_size/2), path_y_offset,Random.Range(-1*map_size/2, map_size/2));
 	}
 
 
 	private Vector3 generate_random_z(float z_constraint,float z_constraint2){
-		return new Vector3(Random.Range(-map_size/2, map_size/2), path_y_offset,Random.Range(z_constraint, z_constraint2));
+		return new Vector3(Random.Range(-1*map_size/2, map_size/2), path_y_offset,Random.Range(z_constraint, z_constraint2));
 	}
 
 	private Vector3 generate_random_x(float x_constraint1,float x_constraint2){

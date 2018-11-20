@@ -105,7 +105,7 @@ public class EnemySpawn : MonoBehaviour {
 				foreach(GameObject tower in CreatePath.towers){
 					AbstractTower tower_stats = tower.GetComponent<AbstractTower>();
 					if (tower_stats is BankTower){
-						PlayerBehaviors.money += 25;
+						PlayerBehaviors.money += tower_stats.damage;
 					}
 				}
 			}

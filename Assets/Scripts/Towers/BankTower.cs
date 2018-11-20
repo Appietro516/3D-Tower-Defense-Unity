@@ -4,6 +4,7 @@ using UnityEngine;
 
 //the bank tower does not need to update itself, so most  methods are empty.
 public class BankTower : AbstractTower {
+
 	public override void Start () {
 		base.Start();
 	}

@@ -11,7 +11,7 @@ public class LaserTower: AbstractTower {
 
 
 	public override void Start () {
-		Debug.Log("start ran!");
+		//Debug.Log("start ran!");
 		base.Start();
 		line = this.gameObject.GetComponent<LineRenderer>();
 		pointlight = this.gameObject.GetComponent<Light>();
@@ -33,7 +33,7 @@ public class LaserTower: AbstractTower {
 	protected override void miscUpdate(){
 		Vector3[] points = new Vector3[2];
 		if(targetedEnemy != null){
-			Debug.Log("toggling points");
+			//Debug.Log("toggling points");
 			points[0] = Vector3.Scale(this.gameObject.transform.position, new Vector3(1,2f,1));
 			points[1] = targetedEnemy.transform.position;
 			pointlight.enabled = true;

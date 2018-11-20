@@ -36,7 +36,7 @@ public abstract class AbstractTower : MonoBehaviour {
 		GameObject instRangeCirc = Instantiate(this.rangeCircO, this.transform.position, Quaternion.identity);
 
 		this.rangeCirc = instRangeCirc.transform;
-		
+
 		this.rangeCirc.localScale = new Vector3(rangeCirc.localScale.x*range*2, rangeCirc.localScale.y, rangeCirc.localScale.z*range*2);
 		this.rangeCirc.position = new Vector3(this.transform.position.x, .01f, this.transform.position.z);
 	}

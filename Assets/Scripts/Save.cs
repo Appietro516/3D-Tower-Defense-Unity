@@ -23,6 +23,25 @@ public static class Save {
 		   fs.Close();
 		}
 	}
+	public static void loadGame(){
+		FileStream fs = new FileStream("Save.dat", FileMode.Open);
+		try{
+			BinaryFormatter formatter = new BinaryFormatter();
+			objs = (Object[]) formatter.Deserialize(fs);
 
+			CreatePath.enemies = (ArrayList<Enemy>) objs[0];
+			CreatePath.enemies = (ArrayList<AbstracTower>) objs[1];
+
+			PlayerBehaviors.money = objs[2];
+			PlayerBehaviors.health = objs[3];
+			PlayerBehaviors.wave = objs[4];
+			PlayerBehaviors.enemiesKilled = objs[5];
+		}
+		catch (SerializationException e){
+		   throw;
+	   }
+	   finally{
+		   fs.Close()
+	}
 
 }

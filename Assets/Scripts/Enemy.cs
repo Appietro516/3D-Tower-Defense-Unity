@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable()]
 public class Enemy : MonoBehaviour {
 	public int health;
 	public int speed;

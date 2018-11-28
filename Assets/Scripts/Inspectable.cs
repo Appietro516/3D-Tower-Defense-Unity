@@ -1,0 +1,3 @@
+interface Inspectable{
+    string getData();
+}

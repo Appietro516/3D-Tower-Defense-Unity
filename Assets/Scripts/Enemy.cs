@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour,  Inspectable {
 	public int health;
 	public int speed;
 	public int damage;
@@ -40,5 +40,11 @@ public class Enemy : MonoBehaviour {
 	private void teardown(){
 		CreatePath.enemies.Remove(this.gameObject);
 		Destroy(this.gameObject);
+	}
+
+	public string getData(){
+		return "health:" + this.health + "\n" + "damage:" + this.damage + "\n" + "speed" + this.speed+ "\n";
+
+		//if (GameObject.GetComponent<Inspectable>());
 	}
 }

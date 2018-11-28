@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public abstract class AbstractTower : MonoBehaviour {
+public abstract class AbstractTower : MonoBehaviour, Inspectable {
 	//dmg stats
 	public int range;
 	public int damage;
@@ -163,6 +163,11 @@ public abstract class AbstractTower : MonoBehaviour {
 	protected abstract bool fire();
 
 	protected abstract void miscUpdate();
+
+	//interface methods
+	public string getData(){
+		return "range:" + this.range + "\n" + "damage:" + this.damage + "\n" + "reload_time" + this.reload_time + "\n";
+	}
 
 
 

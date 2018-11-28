@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[Serializable()]
+[Serializable]
 public abstract class AbstractTower : MonoBehaviour {
 	//dmg stats
 	public int range;

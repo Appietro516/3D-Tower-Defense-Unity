@@ -25,6 +25,7 @@ public class loadGame : MonoBehaviour {
     }
 	public void Load_Save(){
         print("Loading");
-        SceneManager.LoadScene("save_menu", LoadSceneMode.Single);
+		Save.loadGame();
+        SceneManager.LoadScene("basic_level", LoadSceneMode.Single);
     }
 }

@@ -1,20 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 using System.IO;
+using System;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
+using System.Text;
+
+
 
 
 public static class Save {
+	static XmlSerializer bf;
+
 	public static void saveGame(){
 		System.Object[] save = {CreatePath.enemies, CreatePath.towers, PlayerBehaviors.money, PlayerBehaviors.health, PlayerBehaviors.wave, PlayerBehaviors.enemiesKilled};
 
 		FileStream fs = new FileStream("Save.dat", FileMode.Create);
-		BinaryFormatter formatter = new BinaryFormatter();
+		StreamWriter writer = new StreamWriter(fs);
 
 		try{
-		   formatter.Serialize(fs, save);
+		   string json = JsonUtility.ToJson(save);
+		   Debug.Log(json);
+		   writer.Write(json);
 		}
 		catch (SerializationException e){
 		   throw;
@@ -26,22 +34,29 @@ public static class Save {
 	public static void loadGame(){
 		FileStream fs = new FileStream("Save.dat", FileMode.Open);
 		try{
-			BinaryFormatter formatter = new BinaryFormatter();
-			objs = (Object[]) formatter.Deserialize(fs);
+			string str;
+			using (StreamReader reader = new StreamReader(fs)){
+	   			str = reader.ReadToEnd();
+   			}
 
-			CreatePath.enemies = (ArrayList<Enemy>) objs[0];
-			CreatePath.enemies = (ArrayList<AbstracTower>) objs[1];
+			System.Object[] objs = JsonUtility.FromJson<System.Object[]>(str);
 
-			PlayerBehaviors.money = objs[2];
-			PlayerBehaviors.health = objs[3];
-			PlayerBehaviors.wave = objs[4];
-			PlayerBehaviors.enemiesKilled = objs[5];
+
+
+			CreatePath.enemies = (ArrayList) objs[0];
+			CreatePath.enemies = (ArrayList) objs[1];
+
+			PlayerBehaviors.money = (int)objs[2];
+			PlayerBehaviors.health = (int)objs[3];
+			PlayerBehaviors.wave = (int)objs[4];
+			PlayerBehaviors.enemiesKilled = (int)objs[5];
 		}
 		catch (SerializationException e){
 		   throw;
 	   }
 	   finally{
-		   fs.Close()
+		   fs.Close();
+		}
 	}
 
 }

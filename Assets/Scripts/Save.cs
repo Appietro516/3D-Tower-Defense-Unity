@@ -6,13 +6,12 @@ using System;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using System.Text;
+using System.Collections.Generic;
 
 
 
 
 public static class Save {
-	static XmlSerializer bf;
-
 	public static void saveGame(){
 		System.Object[] save = {CreatePath.enemies, CreatePath.towers, PlayerBehaviors.money, PlayerBehaviors.health, PlayerBehaviors.wave, PlayerBehaviors.enemiesKilled};
 
@@ -20,7 +19,7 @@ public static class Save {
 		StreamWriter writer = new StreamWriter(fs);
 
 		try{
-		   string json = JsonUtility.ToJson(save);
+		   string json = JsonUtility.ToJson(CreatePath.enemies);
 		   Debug.Log(json);
 		   writer.Write(json);
 		}
@@ -43,8 +42,8 @@ public static class Save {
 
 
 
-			CreatePath.enemies = (ArrayList) objs[0];
-			CreatePath.enemies = (ArrayList) objs[1];
+			CreatePath.enemies = (List<GameObject>) objs[0];
+			CreatePath.enemies = (List<GameObject>) objs[1];
 
 			PlayerBehaviors.money = (int)objs[2];
 			PlayerBehaviors.health = (int)objs[3];

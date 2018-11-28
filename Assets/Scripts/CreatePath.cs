@@ -23,8 +23,8 @@ public class CreatePath : MonoBehaviour {
 	private Vector3 end = Vector3.zero;
 
 
-	public static ArrayList enemies;
-	public static ArrayList towers;
+	public static List<GameObject> enemies;
+	public static List<GameObject> towers;
 
 
 
@@ -34,8 +34,8 @@ public class CreatePath : MonoBehaviour {
 		this.gameObject.transform.position = new Vector3(-tileMap.size_x/2, 0,-tileMap.size_z/2);
 
 		map_size = tileMap.size_x;
-		enemies = new ArrayList();
-		towers = new ArrayList();
+		enemies = new List<GameObject>();
+		towers = new List<GameObject>();
 
 		ltpath = generate_spline();
 		GameObject built_core = Instantiate(core, tileMap.CenterPosition(new Vector3(end.x, end.y, end.z)), Quaternion.identity);

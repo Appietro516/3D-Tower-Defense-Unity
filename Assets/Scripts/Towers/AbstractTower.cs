@@ -82,10 +82,12 @@ public abstract class AbstractTower : MonoBehaviour {
 		else{
 			gameObject.GetComponent<Renderer>().material.color = init_color;
 		}
+		instRangeCirc.SetActive(true);
 	}
 
 	protected void OnMouseExit(){
 		gameObject.GetComponent<Renderer>().material.color = init_color;
+		instRangeCirc.SetActive(false);
 	}
 
 
@@ -153,6 +155,7 @@ public abstract class AbstractTower : MonoBehaviour {
 		this.instRangeCirc.transform.localScale = new Vector3(instRangeCirc.transform.localScale.x*range*2, instRangeCirc.transform.localScale.y, instRangeCirc.transform.localScale.z*range*2);
 
 		this.instRangeCirc.transform.position = new Vector3(this.transform.position.x, .01f, this.transform.position.z);
+		instRangeCirc.SetActive(false);
 	}
 
 

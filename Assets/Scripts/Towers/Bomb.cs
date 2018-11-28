@@ -21,8 +21,10 @@ public class Bomb : AbstractTower {
 		Destroy(this.gameObject);
 		foreach(GameObject targetedEnemy in CreatePath.enemies){
 			if (inRange(targetedEnemy)){
-				targetedEnemy.health = targetedEnemy.health/2;
+				Enemy enemy_stats = targetedEnemy.GetComponent<Enemy>();
+				enemy_stats.health = enemy_stats.health/2;
 			}
+		}
 
 	}
 

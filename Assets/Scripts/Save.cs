@@ -35,14 +35,14 @@ public static class Save {
 			string str;
 			using (StreamReader reader = new StreamReader(fs)){
 	   			str = reader.ReadToEnd();
+				int[] objs = JsonUtility.FromJson<int[]>(str);
+
+
+
+				LeaderBoard.wave = objs[0];
+				LeaderBoard.enemyDeaths = objs[1];
    			}
 
-			int[] objs = JsonUtility.FromJson<int[]>(str);
-
-
-
-			LeaderBoard.wave = objs[0];
-			LeaderBoard.EnemyDeaths = objs[1];
 		}
 		catch (SerializationException e){
 		   throw;

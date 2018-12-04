@@ -35,7 +35,6 @@ public class startGame : MonoBehaviour {
     }
 	public void Load_Save(){
         print("Loading");
-		Save.loadLeaderBoard
-        SceneManager.LoadScene("high_score", LoadSceneMode.Single);
+        SceneManager.LoadScene("Leaderboard", LoadSceneMode.Single);
     }
 }

@@ -41,9 +41,6 @@ public class PlayerBehaviors : MonoBehaviour {
 		if (Input.GetButtonDown("Mute")){
 			 musicplayer.mute = !musicplayer.mute;
 		}
-		if (Input.GetButtonDown("Save")){
-			 Save.saveGame();
-		}
 
 		if(gamover){
 			Invoke("Gameover",2);

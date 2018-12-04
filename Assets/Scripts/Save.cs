@@ -12,15 +12,14 @@ using System.Collections.Generic;
 
 
 public static class Save {
-	public static void saveGame(){
-		System.Object[] save = {CreatePath.enemies, CreatePath.towers, PlayerBehaviors.money, PlayerBehaviors.health, PlayerBehaviors.wave, PlayerBehaviors.enemiesKilled};
+	public static void saveLeaderboard(){
+		int[] save = {PlayerBehaviors.wave, PlayerBehaviors.enemiesKilled};
 
 		FileStream fs = new FileStream("Save.dat", FileMode.Create);
 		StreamWriter writer = new StreamWriter(fs);
 
 		try{
-		   string json = JsonUtility.ToJson(CreatePath.enemies);
-		   Debug.Log(json);
+		   string json = JsonUtility.ToJson(save);
 		   writer.Write(json);
 		}
 		catch (SerializationException e){
@@ -30,7 +29,7 @@ public static class Save {
 		   fs.Close();
 		}
 	}
-	public static void loadGame(){
+	public static void loadLeaderBoard(){
 		FileStream fs = new FileStream("Save.dat", FileMode.Open);
 		try{
 			string str;
@@ -38,17 +37,12 @@ public static class Save {
 	   			str = reader.ReadToEnd();
    			}
 
-			System.Object[] objs = JsonUtility.FromJson<System.Object[]>(str);
+			int[] objs = JsonUtility.FromJson<int[]>(str);
 
 
 
-			CreatePath.enemies = (List<GameObject>) objs[0];
-			CreatePath.enemies = (List<GameObject>) objs[1];
-
-			PlayerBehaviors.money = (int)objs[2];
-			PlayerBehaviors.health = (int)objs[3];
-			PlayerBehaviors.wave = (int)objs[4];
-			PlayerBehaviors.enemiesKilled = (int)objs[5];
+			LeaderBoard.wave = objs[0];
+			LeaderBoard.EnemyDeaths = objs[1];
 		}
 		catch (SerializationException e){
 		   throw;

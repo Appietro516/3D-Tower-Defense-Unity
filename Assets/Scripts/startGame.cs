@@ -35,7 +35,7 @@ public class startGame : MonoBehaviour {
     }
 	public void Load_Save(){
         print("Loading");
-		Save.loadGame();
-        SceneManager.LoadScene("basic_level", LoadSceneMode.Single);
+		Save.loadLeaderBoard
+        SceneManager.LoadScene("high_score", LoadSceneMode.Single);
     }
 }

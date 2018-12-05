@@ -38,9 +38,10 @@ public static class Save {
 				int[] objs = JsonUtility.FromJson<int[]>(str);
 
 
-
-				LeaderBoard.wave = objs[0];
-				LeaderBoard.enemyDeaths = objs[1];
+				if (objs != null){
+					LeaderBoard.wave = objs[0];
+					LeaderBoard.enemyDeaths = objs[1];
+				}
    			}
 
 		}

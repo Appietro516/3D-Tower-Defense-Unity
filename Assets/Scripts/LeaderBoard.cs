@@ -7,16 +7,17 @@ using System;
 
 public class LeaderBoard : MonoBehaviour {
 
-	public static int wave;
-	public static int enemyDeaths;
+	public static int wave = -1;
+	public static int enemyDeaths = -1;
 	public Button returnButton;
 
 	public Text high_score;
 
 	void Start () {
 		Save.loadLeaderBoard();
-		
-		this.high_score.text = ("Reached wave " + wave + " and defeated " + enemyDeaths + "enemies on" + DateTime.Today.ToString());
+		if (wave != -1){
+			this.high_score.text = ("Reached wave " + wave + " and defeated " + enemyDeaths + "enemies on" + DateTime.Today.ToString());
+		}
 
 		returnButton.onClick.AddListener(Load_First_Level);
 

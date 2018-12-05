@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour,  Inspectable {
 	}
 
 	public string getData(){
-		return "Health:" + this.health + "\n" + "Damage:" + this.damage + "\n" + "Speed" + this.speed+ "\n";
+		return "Health: " + this.health + "\n" + "Damage: " + this.damage + "\n" + "Speed: " + this.speed+ "\n";
 
 		//if (GameObject.GetComponent<Inspectable>());
 	}

@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd7839d09245e34f9912813b4068136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
+  range: 2
   damage: 1
   reload_time: 3
   upgradeCost: 25
@@ -132,3 +132,4 @@ MonoBehaviour:
   descrStr: A tower that fires slow but hits everything in a radius arond it
   nameStr: AOE Tower
   rangeCircO: {fileID: 1322347825366362, guid: 4d06627dd210b6844827539e6b3e5aac, type: 2}
+  instRangeCirc: {fileID: 0}

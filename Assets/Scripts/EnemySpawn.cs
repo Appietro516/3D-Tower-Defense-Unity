@@ -34,7 +34,7 @@ public class EnemySpawn : MonoBehaviour {
 		GameObject current_enemy = Object.Instantiate(enemy);
 		Enemy enemy_stats = current_enemy.GetComponent<Enemy>();
 		int temp_points = Random.Range(1 + (PlayerBehaviors.wave), 6 + (PlayerBehaviors.wave*2));
-		enemy_stats.value = 3;
+		enemy_stats.value = 4;
 
 		points -= temp_points;
 

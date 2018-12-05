@@ -163,14 +163,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933e458039071c84e8025751a1a8ac98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 20
+  range: 6
   damage: 0
-  reload_time: 5
+  reload_time: 8
   upgradeCost: 25
   price: 50
   descrStr: A tower that fires slowly but destroys enemies in 1 hit
   nameStr: Mega Tower
   rangeCircO: {fileID: 1322347825366362, guid: 4d06627dd210b6844827539e6b3e5aac, type: 2}
+  instRangeCirc: {fileID: 0}
 --- !u!120 &120479587138420992
 LineRenderer:
   m_ObjectHideFlags: 1

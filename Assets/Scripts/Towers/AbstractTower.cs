@@ -166,7 +166,7 @@ public abstract class AbstractTower : MonoBehaviour, Inspectable {
 
 	//interface methods
 	public string getData(){
-		return nameStr +"\nRange:" + this.range + "\n" + "Damage:" + this.damage + "\n" + "Reload Time:" + this.reload_time + "\n";
+		return nameStr +"\nRange:" + this.range + "\n" + "Damage:" + this.damage + "\n" + "Reload Time:" + this.reload_time + "\n\n" + descrStr;
 	}
 
 

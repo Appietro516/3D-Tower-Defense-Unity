@@ -163,9 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cfe2955c447d5d49b763a6f38dd2e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
+  range: 4
   damage: 1
-  reload_time: 0.6
+  reload_time: 0.7
   upgradeCost: 25
   price: 50
   descrStr: A tower that targets an enemy with a laser

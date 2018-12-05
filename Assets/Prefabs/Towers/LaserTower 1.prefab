@@ -165,12 +165,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 3
   damage: 1
-  reload_time: 1
+  reload_time: 0.6
   upgradeCost: 25
   price: 50
   descrStr: A tower that targets an enemy with a laser
   nameStr: Laser Tower
   rangeCircO: {fileID: 1322347825366362, guid: 4d06627dd210b6844827539e6b3e5aac, type: 2}
+  instRangeCirc: {fileID: 0}
 --- !u!120 &120879128526532140
 LineRenderer:
   m_ObjectHideFlags: 1

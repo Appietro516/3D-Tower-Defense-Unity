@@ -27,7 +27,7 @@ public class UI : MonoBehaviour {
 	void UpdateTower(){
 		string nameStr = ts.currentComp.nameStr;
 		string descrStr = ts.currentComp.descrStr;
-		towerText.SetText("Currently Selected Tower: \n\n" + nameStr + "\n" + descrStr);
+		towerText.SetText("<Q Currently Selected Tower E> \n\n" + nameStr + "\n" + descrStr);
 	}
 
 
